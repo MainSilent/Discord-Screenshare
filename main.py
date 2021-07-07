@@ -9,7 +9,11 @@ token = '""'
 
 def response_interceptor(request, response):
 	if "a9a865842245be0e7de5" in request.url.split('/')[-1]:
-		print(response.body)
+		with open("./a9a865842245be0e7de5.js", 'r') as f:
+			data = f.read()
+		request.body = json.dumps(data).encode('utf-8')
+		del request.headers['Content-Length']
+		request.headers['Content-Length'] = str(len(request.body))
 
 options = { 'disable_encoding': True }
 driver = Chrome(executable_path="./chromedriver", seleniumwire_options=options)
