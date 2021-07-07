@@ -24,7 +24,6 @@
 
         answerer.onaddstream = function (event) {
             video.srcObject = event.stream;
-            video.play();
         };
 
         answerer.setRemoteDescription(offer, onSdpSucces, onSdpError);
