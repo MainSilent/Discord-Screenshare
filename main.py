@@ -2,16 +2,28 @@ import os
 import time
 import json
 import gzip
+from bs4 import BeautifulSoup
 from selenium.webdriver.chrome.options import Options
 from seleniumwire.undetected_chromedriver import Chrome
 
 token = '""'
 
 def response_interceptor(request, response):
-	if "a9a865842245be0e7de5" in request.url.split('/')[-1]:
+	if request.url == "https://discord.com/channels/@me":
+		soup = BeautifulSoup(response.body, 'html.parser')
+		elems = soup.find_all('script')
+		for elem in elems:
+			if hasattr(elem, 'integrity'):
+				del elem['integrity']
+
+		response.body = bytes(str(soup), 'utf-8')
+		del response.headers['Content-Length']
+		response.headers['Content-Length'] = str(len(response.body))
+
+	elif "a9a865842245be0e7de5" in request.url.split('/')[-1]:
 		with open("./a9a865842245be0e7de5.js", 'r') as f:
 			data = f.read()
-		response.body = json.dumps(data).encode('utf-8')
+		response.body = data
 		del response.headers['Content-Length']
 		response.headers['Content-Length'] = str(len(response.body))
 
