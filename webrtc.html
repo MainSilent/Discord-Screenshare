@@ -3,9 +3,11 @@
 
 <script>
 
+    var offerer, answerer
+
     /* offerer */
     function offererPeer(stream) {
-        var offerer = new RTCPeerConnection();
+        offerer = new RTCPeerConnection();
         offerer.addStream(stream);
 
         offerer.createOffer(function (offer) {
@@ -16,7 +18,7 @@
 
     /* answerer */
     function answererPeer(offer, stream) {
-        var answerer = new RTCPeerConnection();
+        answerer = new RTCPeerConnection();
         answerer.addStream(stream);
 
         answerer.onaddstream = function (event) {
@@ -32,8 +34,8 @@
         }, onSdpError);
     }
 
-    const onSdpError = (e) => console.error('onSdpError', e)
-    const onSdpSucces = () => console.log('onSdpSucces')
+    const onSdpError = (e) => console.error('Sdp Error', e)
+    const onSdpSucces = () => console.log('Sdp Succes')
 
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d');
@@ -42,6 +44,7 @@ const stream = canvas.captureStream();
 const img = new Image();
 img.onload = e => {
   ctx.drawImage(img, 0, 0);
+  offererPeer(stream)
 }
 img.src = "https://66.media.tumblr.com/84d332cafeb1052c477c979281e5713b/tumblr_owe3l0tkCj1wxdq3zo1_1280.jpg";
 ctx.fillRect(0,0,20,20);
