@@ -1,5 +1,5 @@
 <canvas></canvas>
-<video id="peer" autoplay controls style="width:40%;"></video>
+<video controls style="width:40%;"></video>
 
 <script>
 
@@ -20,6 +20,7 @@
         answerer.addStream(stream);
 
         answerer.onaddstream = function (event) {
+            const video = document.querySelector('video');
             answererToOfferer.src = URL.createObjectURL(event.stream);
             answererToOfferer.play();
         };
@@ -34,12 +35,21 @@
     const onSdpError = (e) => console.error('onSdpError', e)
     const onSdpSucces = () => console.log('onSdpSucces')
 
-    var answererToOfferer = document.getElementById('peer');
-    var video = document.getElementById('video');
-    var stream = video.captureStream(25);
-    video.onplay = () => {
-        answererToOfferer.src = stream;
-        answererToOfferer.play();
-    }
+canvas = document.querySelector('canvas')
+vid = document.querySelector('video')
+const ctx = canvas.getContext('2d');
+const stream = canvas.captureStream();
+vid.srcObject = stream;
+
+const img = new Image();
+img.crossOrigin = 'anonymous'; // add this to request the image as cross-origin allowed
+img.onload = e => {
+  console.log('will not taint the canvas anymore')
+  ctx.drawImage(img, 0, 0);
+  // and if we try now to capture a new stream, we have a clear error
+  const stream2 = canvas.captureStream();
+}
+img.src = "https://66.media.tumblr.com/84d332cafeb1052c477c979281e5713b/tumblr_owe3l0tkCj1wxdq3zo1_1280.jpg";
+ctx.fillRect(0,0,20,20);
 
 </script>
