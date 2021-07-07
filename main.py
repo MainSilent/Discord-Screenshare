@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from selenium.webdriver.chrome.options import Options
 from seleniumwire.undetected_chromedriver import Chrome
 
-token = '""'
+token = ''
 
 def response_interceptor(request, response):
 	if request.url == "https://discord.com/channels/@me":
@@ -43,7 +43,7 @@ function getLocalStoragePropertyDescriptor() {{
 }}
 Object.defineProperty(window, 'localStorage', getLocalStoragePropertyDescriptor());
 const localStorage = getLocalStoragePropertyDescriptor().get.call(window);	
-localStorage.setItem("token", '{token}')
+localStorage.setItem("token", '"{token}"')
 """
 driver.execute_script(token_script)
 driver.get("https://discord.com/channels/@me")
