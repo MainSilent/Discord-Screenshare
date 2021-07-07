@@ -1,14 +1,8 @@
 <video id="peer2-to-peer1" autoplay controls style="width:40%;"></video>
 <video id="peer1-to-peer2" autoplay controls style="width:40%;"></video>
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;"></canvas>
 
 <script>
-    var mediaConstraints = {
-        optional: [],
-        mandatory: {
-            OfferToReceiveAudio: true
-        }
-    };
-
     var offerer, answerer;
     var offererToAnswerer = document.getElementById('peer1-to-peer2');
     var answererToOfferer = document.getElementById('peer2-to-peer1');
@@ -33,7 +27,7 @@
         offerer.createOffer(function (offer) {
             offerer.setLocalDescription(offer);
             answererPeer(offer, stream);
-        }, onSdpError, mediaConstraints);
+        }, onSdpError);
     }
 
     /* answerer */
@@ -50,24 +44,8 @@
         answerer.createAnswer(function (answer) {
             answerer.setLocalDescription(answer);
             offerer.setRemoteDescription(answer, onSdpSucces, onSdpError);
-        }, onSdpError, mediaConstraints);
+        }, onSdpError);
     }
-
-
-
-    function getUserMedia(callback) {
-        navigator.getUserMedia({
-            audio: true
-        }, callback, onerror);
-
-        function onerror(e) {
-            console.error(e);
-        }
-    }
-
-    getUserMedia(function (stream) {
-        offererPeer(stream);
-    });
 
     function onSdpError(e) {
         console.error('onSdpError', e);
@@ -76,4 +54,8 @@
     function onSdpSucces() {
         console.log('onSdpSucces');
     }
+
+    var canvasElt = document.getElementsByTagName("canvas")[0];
+    var stream = canvasElt.captureStream(25);
+    offererPeer(stream);
 </script>
