@@ -40,13 +40,8 @@
         }, onSdpError);
     }
 
-    function onSdpError(e) {
-        console.error('onSdpError', e);
-    }
-
-    function onSdpSucces() {
-        console.log('onSdpSucces');
-    }
+    const onSdpError = (e) => console.error('onSdpError', e)
+    const onSdpSucces = () => console.log('onSdpSucces')
 
     var video = document.getElementById('video');
     video.onplay = () => {
