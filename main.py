@@ -9,12 +9,12 @@ token = '""'
 
 def response_interceptor(request, response):
 	if "a9a865842245be0e7de5" in request.url.split('/')[-1]:
-		print(response)
+		print(response.body)
 
-options = Options()
-driver = Chrome(executable_path="./chromedriver", options=options)
+options = { 'disable_encoding': True }
+driver = Chrome(executable_path="./chromedriver", seleniumwire_options=options)
 driver.response_interceptor = response_interceptor
-driver.get('https://discord.com')
+driver.get('https://discord.com/login')
 
 # Set Token
 token_script = f"""
