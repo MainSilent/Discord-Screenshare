@@ -1,10 +1,8 @@
-<video id="peer2-to-peer1" autoplay controls style="width:40%;"></video>
 <video id="peer1-to-peer2" autoplay controls style="width:40%;"></video>
-<canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;"></canvas>
+<video id="video" crossOrigin="anonymous" src="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4" controls></video>
 
 <script>
     var offerer, answerer;
-    var offererToAnswerer = document.getElementById('peer1-to-peer2');
     var answererToOfferer = document.getElementById('peer2-to-peer1');
 
     window.RTCPeerConnection = window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
@@ -18,11 +16,6 @@
     function offererPeer(stream) {
         offerer = new RTCPeerConnection();
         offerer.addStream(stream);
-
-        offerer.onaddstream = function (event) {
-            offererToAnswerer.src = URL.createObjectURL(event.stream);
-            offererToAnswerer.play();
-        };
 
         offerer.createOffer(function (offer) {
             offerer.setLocalDescription(offer);
@@ -55,7 +48,10 @@
         console.log('onSdpSucces');
     }
 
-    var canvasElt = document.getElementsByTagName("canvas")[0];
-    var stream = canvasElt.captureStream(25);
-    offererPeer(stream);
+    var video = document.getElementById('video');
+    video.onplay = () => {
+        var stream = video.captureStream(25);
+        answererToOfferer.src = stream;
+        answererToOfferer.play();
+    }
 </script>
