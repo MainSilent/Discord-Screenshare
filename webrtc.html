@@ -2,12 +2,10 @@
 <video id="video" crossOrigin="anonymous" src="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4" controls></video>
 
 <script>
-    var offerer, answerer;
-    var answererToOfferer = document.getElementById('peer');
 
     /* offerer */
     function offererPeer(stream) {
-        offerer = new RTCPeerConnection();
+        var offerer = new RTCPeerConnection();
         offerer.addStream(stream);
 
         offerer.createOffer(function (offer) {
@@ -18,7 +16,7 @@
 
     /* answerer */
     function answererPeer(offer, stream) {
-        answerer = new RTCPeerConnection();
+        var answerer = new RTCPeerConnection();
         answerer.addStream(stream);
 
         answerer.onaddstream = function (event) {
@@ -36,10 +34,12 @@
     const onSdpError = (e) => console.error('onSdpError', e)
     const onSdpSucces = () => console.log('onSdpSucces')
 
+    var answererToOfferer = document.getElementById('peer');
     var video = document.getElementById('video');
     var stream = video.captureStream(25);
     video.onplay = () => {
         answererToOfferer.src = stream;
         answererToOfferer.play();
     }
+
 </script>
