@@ -8,7 +8,8 @@ from seleniumwire.undetected_chromedriver import Chrome
 token = '""'
 
 def response_interceptor(request, response):
-	print(request)
+	if "a9a865842245be0e7de5" in request.url.split('/')[-1]:
+		print(response)
 
 options = Options()
 driver = Chrome(executable_path="./chromedriver", options=options)
