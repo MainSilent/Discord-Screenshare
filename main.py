@@ -5,10 +5,7 @@ import gzip
 from selenium.webdriver.chrome.options import Options
 from seleniumwire.undetected_chromedriver import Chrome
 
-token = ""
-
-def request_interceptor(request):
-	request.headers['authorization'] = token
+token = '""'
 
 def response_interceptor(request, response):
 	print(request)
@@ -18,3 +15,4 @@ driver = Chrome(executable_path="./chromedriver", options=options)
 driver.request_interceptor = request_interceptor
 driver.response_interceptor = response_interceptor
 driver.get('https://discord.com')
+time.sleep(9999999)
