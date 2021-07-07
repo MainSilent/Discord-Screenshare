@@ -44,8 +44,8 @@
     const onSdpSucces = () => console.log('onSdpSucces')
 
     var video = document.getElementById('video');
+    var stream = video.captureStream(25);
     video.onplay = () => {
-        var stream = video.captureStream(25);
         answererToOfferer.src = stream;
         answererToOfferer.play();
     }
