@@ -1,4 +1,4 @@
-<video controls style="width:40%;"></video>
+<video controls autoplay style="width:40%;"></video>
 
 <script>
 
@@ -23,6 +23,11 @@
 
         answerer.onaddstream = function (event) {
             video.srcObject = event.stream;
+        };
+
+        answerer.onicecandidate = function (event) {
+            if (!event || !event.candidate) return;
+            offerer.addIceCandidate(event.candidate);
         };
 
         answerer.setRemoteDescription(offer, onSdpSucces, onSdpError);
