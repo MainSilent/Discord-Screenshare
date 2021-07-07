@@ -3,38 +3,38 @@
 <script>
 
     var offerer, answerer
-    const video = document.querySelector('video');
+    const video = document.querySelector('video')
 
     /* offerer */
     function offererPeer(stream) {
-        offerer = new RTCPeerConnection();
-        offerer.addStream(stream);
+        offerer = new RTCPeerConnection()
+        offerer.addStream(stream)
 
-        offerer.createOffer(function (offer) {
-            offerer.setLocalDescription(offer);
-            answererPeer(offer, stream);
-        }, onSdpError);
+        offerer.createOffer(offer => {
+            offerer.setLocalDescription(offer)
+            answererPeer(offer, stream)
+        }, onSdpError)
     }
 
     /* answerer */
     function answererPeer(offer, stream) {
-        answerer = new RTCPeerConnection();
-        answerer.addStream(stream);
+        answerer = new RTCPeerConnection()
+        answerer.addStream(stream)
 
-        answerer.onaddstream = function (event) {
-            video.srcObject = event.stream;
+        answerer.onaddstream = event => {
+            video.srcObject = event.stream
         };
 
-        answerer.onicecandidate = function (event) {
-            if (!event || !event.candidate) return;
-            offerer.addIceCandidate(event.candidate);
+        answerer.onicecandidate = event => {
+            if (!event || !event.candidate) return
+            offerer.addIceCandidate(event.candidate)
         };
 
-        answerer.setRemoteDescription(offer, onSdpSucces, onSdpError);
-        answerer.createAnswer(function (answer) {
-            answerer.setLocalDescription(answer);
-            offerer.setRemoteDescription(answer, onSdpSucces, onSdpError);
-        }, onSdpError);
+        answerer.setRemoteDescription(offer, onSdpSucces, onSdpError)
+        answerer.createAnswer(answer => {
+            answerer.setLocalDescription(answer)
+            offerer.setRemoteDescription(answer, onSdpSucces, onSdpError)
+        }, onSdpError)
     }
 
     const onSdpError = (e) => console.error('Sdp Error', e)
