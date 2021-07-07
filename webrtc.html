@@ -5,13 +5,6 @@
     var offerer, answerer;
     var answererToOfferer = document.getElementById('peer2-to-peer1');
 
-    window.RTCPeerConnection = window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
-    window.RTCSessionDescription = window.mozRTCSessionDescription || window.RTCSessionDescription;
-    window.RTCIceCandidate = window.mozRTCIceCandidate || window.RTCIceCandidate;
-
-    navigator.getUserMedia = navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
-    window.URL = window.webkitURL || window.URL;
-
     /* offerer */
     function offererPeer(stream) {
         offerer = new RTCPeerConnection();
