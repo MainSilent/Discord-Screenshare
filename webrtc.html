@@ -1,4 +1,3 @@
-<canvas></canvas>
 <video controls style="width:40%;"></video>
 
 <script>
@@ -36,15 +35,14 @@
     const onSdpError = (e) => console.error('Sdp Error', e)
     const onSdpSucces = () => console.log('Sdp Succes')
 
-const canvas = document.querySelector('canvas')
-const ctx = canvas.getContext('2d');
-const stream = canvas.captureStream();
+    const constraints = {
+        audio: false,
+        video: {
+            width: { max: 1920 },
+            height: { max: 1080 },
+            frameRate: { max: 10 }
+        }
+    }
 
-const img = new Image();
-img.src = "https://i.stack.imgur.com/PDnsH.png";
-img.onload = e => {
-    ctx.drawImage(img, 0, 0);
-    offererPeer(stream)
-}
-
+    navigator.mediaDevices.getDisplayMedia(constraints).then(offererPeer)
 </script>
