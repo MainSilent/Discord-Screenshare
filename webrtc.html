@@ -23,8 +23,8 @@
 
         answerer.onaddstream = function (event) {
             const video = document.querySelector('video');
-            answererToOfferer.src = URL.createObjectURL(event.stream);
-            answererToOfferer.play();
+            video.src = URL.createObjectURL(event.stream);
+            video.play();
         };
 
         answerer.setRemoteDescription(offer, onSdpSucces, onSdpError);
