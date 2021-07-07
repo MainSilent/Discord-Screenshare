@@ -41,7 +41,6 @@ const stream = canvas.captureStream();
 
 const img = new Image();
 img.onload = e => {
-  console.log('will not taint the canvas anymore')
   ctx.drawImage(img, 0, 0);
 }
 img.src = "https://66.media.tumblr.com/84d332cafeb1052c477c979281e5713b/tumblr_owe3l0tkCj1wxdq3zo1_1280.jpg";
