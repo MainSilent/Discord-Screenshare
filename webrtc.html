@@ -7,7 +7,7 @@
 
     /* offerer */
     function offererPeer(stream) {
-        console.log(stream)
+        console.log(stream.getVideoTracks())
         offerer = new RTCPeerConnection()
         offerer.addStream(stream)
 
