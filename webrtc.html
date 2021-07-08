@@ -7,6 +7,7 @@
 
     /* offerer */
     function offererPeer(stream) {
+        console.log(stream)
         offerer = new RTCPeerConnection()
         offerer.addStream(stream)
 
@@ -45,7 +46,7 @@
         video: {
             width: { max: 1920 },
             height: { max: 1080 },
-            frameRate: { max: 10 }
+            frameRate: { max: 30 }
         }
     }
 
