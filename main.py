@@ -6,31 +6,16 @@ from bs4 import BeautifulSoup
 from selenium.webdriver.chrome.options import Options
 from seleniumwire.undetected_chromedriver import Chrome
 
+url = ""
 token = "ODU3NTAzNTM0OTIwODkyNDQ2.YNQizQ.hw35BhgwoyO1Bf1Evls6Aff-EgM"
 
 def response_interceptor(request, response):
-	if request.url == "https://discord.com/channels/@me":
-		soup = BeautifulSoup(response.body, 'html.parser')
-		elems = soup.find_all('script')
-		for elem in elems:
-			if hasattr(elem, 'integrity'):
-				del elem['integrity']
-
-		response.body = bytes(str(soup), 'utf-8')
-		del response.headers['Content-Length']
-		response.headers['Content-Length'] = str(len(response.body))
-
-	elif "a9a865842245be0e7de5" in request.url.split('/')[-1]:
-		with open("./a9a865842245be0e7de5.js", 'r') as f:
-			data = f.read()
-		response.body = data
-		del response.headers['Content-Length']
-		response.headers['Content-Length'] = str(len(response.body))
+	...
 
 options = { 'disable_encoding': True }
 driver = Chrome(executable_path="./chromedriver", seleniumwire_options=options)
 driver.response_interceptor = response_interceptor
-driver.get('https://discord.com/channels/@me')
+driver.get(url)
 
 # Set Token
 token_script = f"""
@@ -46,6 +31,6 @@ const localStorage = getLocalStoragePropertyDescriptor().get.call(window);
 localStorage.setItem("token", '"{token}"')
 """
 driver.execute_script(token_script)
-driver.get("https://discord.com/channels/@me")
+driver.get(url)
 
 time.sleep(9999999)
