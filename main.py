@@ -30,7 +30,7 @@ def response_interceptor(request, response):
 options = { 'disable_encoding': True }
 driver = Chrome(executable_path="./chromedriver", seleniumwire_options=options)
 driver.response_interceptor = response_interceptor
-driver.get('https://discord.com/login')
+driver.get('https://discord.com/channels/@me')
 
 # Set Token
 token_script = f"""
