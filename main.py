@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from selenium.webdriver.chrome.options import Options
 from seleniumwire.undetected_chromedriver import Chrome
 
-token = ""
+token = "ODU3NTAzNTM0OTIwODkyNDQ2.YNQizQ.hw35BhgwoyO1Bf1Evls6Aff-EgM"
 
 def response_interceptor(request, response):
 	if request.url == "https://discord.com/channels/@me":
