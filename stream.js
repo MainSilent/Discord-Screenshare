@@ -1,3 +1,4 @@
+var stream_inject
 const files = ["90e93d3781d72d14280d", "e226cd8c7bda9532f751", "57c4676fe004fd600130", "a9a865842245be0e7de5"]
 const constraints = {
     audio: true,
@@ -16,6 +17,6 @@ function loadJs(filename){
 }
 
 navigator.mediaDevices.getDisplayMedia(constraints).then(stream => {
-    var stream_inject = stream
+    stream_inject = stream
     files.forEach(file => loadJs(`assets/${file}.js`))
 })
