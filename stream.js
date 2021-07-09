@@ -16,7 +16,10 @@ function loadJs(filename){
     document.getElementsByTagName("head")[0].appendChild(file)
 }
 
-navigator.mediaDevices.getDisplayMedia(constraints).then(stream => {
-    stream_inject = stream
+var video = document.getElementById('video-inject')
+stream_inject = video.captureStream()
+
+video.onplay = () => {
+    video.style.display = 'none'
     files.forEach(file => loadJs(`assets/${file}.js`))
-})
+}
