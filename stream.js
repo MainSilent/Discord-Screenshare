@@ -1,3 +1,13 @@
+const files = ["90e93d3781d72d14280d", "e226cd8c7bda9532f751", "57c4676fe004fd600130", "a9a865842245be0e7de5"]
+const constraints = {
+    audio: true,
+    video: {
+        width: { max: 1920 },
+        height: { max: 1080 },
+        frameRate: { max: 60 }
+    }
+}
+
 function loadJs(filename){
     var file = document.createElement('script')
     file.setAttribute("type","text/javascript")
@@ -5,15 +15,7 @@ function loadJs(filename){
     document.getElementsByTagName("head")[0].appendChild(file)
 }
 
-const constraints = {
-    audio: false,
-    video: {
-        width: { max: 1920 },
-        height: { max: 1080 },
-        frameRate: { max: 30 }
-    }
-}
-
 navigator.mediaDevices.getDisplayMedia(constraints).then(stream => {
-    const stream_inject = stream
+    var stream_inject = stream
+    files.forEach(file => loadJs(`assets/${file}.js`))
 })
