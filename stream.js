@@ -26,7 +26,12 @@ video.onloadedmetadata = () => {
     // Stream
     const video_stream = canvas.captureStream(60)
     const audio_stream = stream_dest.stream
-    stream_inject = new MediaStream([video_stream.getVideoTracks()[0], audio_stream.getAudioTracks()[0]])
+    stream_inject = new MediaStream([
+        video_stream.getVideoTracks()[0],
+        audio_stream.getAudioTracks()[0]
+    ])
+
+    // Load js files
     js_files.forEach(file => loadJs(`assets/${file}.js`))
 }
 
