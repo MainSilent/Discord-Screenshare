@@ -9,21 +9,39 @@ const constraints = {
     }
 }
 
-function loadJs(filename){
+function loadJs(filename) {
     var file = document.createElement('script')
-    file.setAttribute("type","text/javascript")
+    file.setAttribute("type", "text/javascript")
     file.setAttribute("src", filename)
     document.getElementsByTagName("head")[0].appendChild(file)
 }
 
-const video = document.createElement('video')
-video.src = "./video.mp4"
-document.body.appendChild(video)
-stream_inject = video.captureStream(60)
-video.muted = true
-video.play()
+const vid = document.getElementById("vid")
+const canvas = document.getElementById("out")
+var ctx = canvas.getContext('2d');
+var audio = document.getElementById("aud")
 
-video.onplay = () => {
-    video.style.display = 'none'
+// set canvas size = video size when known
+vid.addEventListener('loadedmetadata', function () {
+    canvas.width = vid.videoWidth;
+    canvas.height = vid.videoHeight;
+});
+
+vid.onplay = () => {
+    function step() {
+        ctx.drawImage(vid, 0, 0, canvas.width, canvas.height)
+        requestAnimationFrame(step)
+    }
+    requestAnimationFrame(step);
+
+    vid.style.display = "none"
+    canvas.style.display = "none"
+
+    var ctxx = new AudioContext();
+    var source = ctxx.createMediaElementSource(vid);
+    var stream_dest = ctxx.createMediaStreamDestination();
+    source.connect(stream_dest);
+    var stream = canvas.captureStream(60)
+    stream_inject = new MediaStream([stream.getVideoTracks()[0], stream_dest.stream.getAudioTracks()[0]]);
     files.forEach(file => loadJs(`assets/${file}.js`))
-}
+};
