@@ -12,9 +12,6 @@ const video = document.createElement('video')
 const canvas = document.createElement('canvas')
 const ctx = canvas.getContext('2d')
 
-video.src = "./video.mp4"
-video.play()
-
 video.onloadedmetadata = () => {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
