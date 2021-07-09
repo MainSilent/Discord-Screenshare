@@ -16,3 +16,11 @@ video.onloadedmetadata = () => {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
 }
+
+video.onplay = () => {
+    function step() {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
+        requestAnimationFrame(step)
+    }
+    requestAnimationFrame(step);
+}
