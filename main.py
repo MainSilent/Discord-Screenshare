@@ -1,7 +1,8 @@
+import os
 import time
 from selenium.webdriver import Chrome, ChromeOptions
 
-url = "http://127.0.0.1:5500"
+url = f"file://{os.getcwd()}/index.html"
 video_path = "./video.mp4"
 
 # Open index page
