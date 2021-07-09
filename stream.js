@@ -16,8 +16,12 @@ function loadJs(filename){
     document.getElementsByTagName("head")[0].appendChild(file)
 }
 
-var video = document.getElementById('video-inject')
-stream_inject = video.captureStream()
+const video = document.createElement('video')
+video.src = "./video.mp4"
+document.body.appendChild(video)
+stream_inject = video.captureStream(60)
+video.muted = true
+video.play()
 
 video.onplay = () => {
     video.style.display = 'none'
