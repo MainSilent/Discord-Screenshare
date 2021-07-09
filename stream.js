@@ -1,5 +1,5 @@
 var stream_inject
-const files = ["90e93d3781d72d14280d", "e226cd8c7bda9532f751", "57c4676fe004fd600130", "a9a865842245be0e7de5"]
+const files = ["a9a865842245be0e7de5.min", "90e93d3781d72d14280d", "e226cd8c7bda9532f751", "57c4676fe004fd600130"]
 const constraints = {
     audio: true,
     video: {
