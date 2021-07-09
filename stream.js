@@ -16,6 +16,6 @@ video.src = "./video.mp4"
 video.play()
 
 video.onloadedmetadata = () => {
-    canvas.width = vid.videoWidth;
-    canvas.height = vid.videoHeight;
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
 }
