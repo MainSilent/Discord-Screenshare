@@ -1,8 +1,4 @@
-import os
 import time
-import json
-import gzip
-from bs4 import BeautifulSoup
 from selenium.webdriver import Chrome, ChromeOptions
 
 url = "http://127.0.0.1:5500"
