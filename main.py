@@ -10,7 +10,8 @@ url = "http://127.0.0.1:5500"
 token = "ODU3NTAzNTM0OTIwODkyNDQ2.YNQizQ.hw35BhgwoyO1Bf1Evls6Aff-EgM"
 
 def response_interceptor(request, response):
-	print(request.url)
+  ...
+	#print(request.url)
 
 options = Options()
 options.add_argument('--disable-web-security')
