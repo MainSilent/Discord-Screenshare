@@ -85,3 +85,7 @@ class Stream:
 				break
 			except:
 				time.sleep(0.1)
+
+	def stop(self):
+		self.driver.close()
+		self.driver.quit()
