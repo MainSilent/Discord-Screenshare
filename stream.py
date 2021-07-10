@@ -47,6 +47,26 @@ class Stream:
             return True
         return False
 
+    def scroll(self):
+    	self.driver.execute_script('''
+            var c_inject = document.getElementById("channels");
+            if( c_inject.scrollTop === (c_inject.scrollHeight - c_inject.offsetHeight))
+                c_inject.scroll(0, 0)
+            else
+                c_inject.scroll(0, c_inject.scrollTop + 1000)
+        ''')
+
+    def join(self):
+    	print("Joining voice channel...")
+		while True:
+		    try:
+
+		        driver.execute_script(f'document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").click()')
+
+		        break
+		    except:
+		        time.sleep(0.01)  
+
     def start(self):
     	while True:
 		    try:
