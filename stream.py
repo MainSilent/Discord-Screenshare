@@ -10,6 +10,14 @@ class Video:
 		print("Loading video...")
 		self.driver.execute_script(f"video.src='{url}'")
 
+	def play():
+		print("Play")
+		self.driver.execute_script(f"video.play()")
+
+	def pause():
+		print("Pause")
+		self.driver.execute_script(f"video.pause()")
+
 class Stream(Video):
 	client_url = f"file://{os.getcwd()}/client/index.html"
 
