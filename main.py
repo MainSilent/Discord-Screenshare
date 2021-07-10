@@ -5,7 +5,7 @@ import os
 import time
 from selenium.webdriver import Chrome, ChromeOptions
 
-url = f"file://{os.getcwd()}/index.html"
+url = f"file://{os.getcwd()}/client/index.html"
 guild_id = 578558255392096256
 channel_id = 863407782316081202
 video_path = "./video.mp4"
