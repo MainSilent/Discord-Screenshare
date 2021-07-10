@@ -20,20 +20,37 @@ class Stream:
 		options.add_argument('--disable-dev-shm-usage')
 		options.add_argument('-–allow-file-access-from-files')
 		options.add_argument('--autoplay-policy=no-user-gesture-required')
-		driver = Chrome(executable_path="./chromedriver", options=options)
+		self.driver = Chrome(executable_path="./chromedriver", options=options)
 		print("Opening page...")
 		driver.get(self.client_url)
 
 	def load_video(self, url):
 		print("Loading video...")
-		driver.execute_script(f"video.src='{url}'")
+		self.driver.execute_script(f"video.src='{url}'")
 
 	def open_guild(self):
 		print("Opening guild...")
 		while True:
 		    try:
-		        driver.execute_script(f'document.querySelector(\'[data-list-item-id="guildsnav___{self.guild_id}"]\').click()')
+		        self.driver.execute_script(f'document.querySelector(\'[data-list-item-id="guildsnav___{self.guild_id}"]\').click()')
 		        break
 		    except:
 		        time.sleep(0.1)
 
+    def is_full(self):
+    	if self.driver.execute_script(f'return document.querySelector("[aria-label=\'Channel is full\']")'):
+            return True
+        return False
+
+    def is_locked(self):
+    	if self.driver.execute_script(f'return document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").innerHTML.includes("Voice (Locked)")'):
+            return True
+        return False
+
+    def start(self):
+    	while True:
+		    try:
+		        self.driver.execute_script('document.querySelector(\'[aria-label="Share Your Screen"]\').click()')
+		        break
+		    except:
+		        time.sleep(0.1)
