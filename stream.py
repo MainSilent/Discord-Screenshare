@@ -43,7 +43,7 @@ class Stream:
 		return False
 
 	def is_locked(self):
-		if self.driver.execute_script(f'return document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").innerHTML.includes("Voice (Locked)")'):
+		if self.driver.execute_script(f'return document.querySelector("[data-list-item-id=\'channels___{self.channel_id}\']").innerHTML.includes("Voice (Locked)")'):
 			return True
 		return False
 
@@ -53,7 +53,7 @@ class Stream:
 			if( c_inject.scrollTop === (c_inject.scrollHeight - c_inject.offsetHeight))
 				c_inject.scroll(0, 0)
 			else
-				c_inject.scroll(0, c_inject.scrollTop + 100)
+				c_inject.scroll(0, c_inject.scrollTop + 1000)
 		''')
 
 	def join(self):
@@ -66,7 +66,7 @@ class Stream:
 					print("Channel is locked")
 					break
 
-				self.driver.execute_script(f'document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").click()')
+				self.driver.execute_script(f'document.querySelector("[data-list-item-id=\'channels___{self.channel_id}\']").click()')
 
 				if self.is_full():	
 					print("Channel is full")
@@ -77,10 +77,10 @@ class Stream:
 			except:
 				time.sleep(0.01)  
 
-		def start(self):
-			while True:
-				try:
-					self.driver.execute_script('document.querySelector(\'[aria-label="Share Your Screen"]\').click()')
-					break
-				except:
-					time.sleep(0.1)
+	def start(self):
+		while True:
+			try:
+				self.driver.execute_script('document.querySelector(\'[aria-label="Share Your Screen"]\').click()')
+				break
+			except:
+				time.sleep(0.1)
