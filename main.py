@@ -48,6 +48,10 @@ while True:
                 c_inject.scroll(0, c_inject.scrollTop + 2000)
         ''')
 
+        # Check if voice channel is locked
+        if driver.execute_script(f'document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").innerHTML.includes("Voice (Locked)")'):
+            print("Channel is locked")
+
         driver.execute_script(f'document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").click()')
         break
     except:
