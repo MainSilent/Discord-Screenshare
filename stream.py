@@ -21,6 +21,12 @@ class Video:
 	def duration(self):
 		return self.driver.execute_script("return video.duration")
 
+	def current(self, time=None):
+		if time:
+			self.driver.execute_script(f"video.currentTime = {time}")
+		else:
+			return self.driver.execute_script("return video.currentTime")
+
 class Stream(Video):
 	client_url = f"file://{os.getcwd()}/client/index.html"
 
