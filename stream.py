@@ -12,11 +12,14 @@ class Video:
 
 	def play(self):
 		print("Play")
-		self.driver.execute_script(f"video.play()")
+		self.driver.execute_script("video.play()")
 
 	def pause(self):
 		print("Pause")
-		self.driver.execute_script(f"video.pause()")
+		self.driver.execute_script("video.pause()")
+
+	def duration(self):
+		return self.driver.execute_script("return video.duration")
 
 class Stream(Video):
 	client_url = f"file://{os.getcwd()}/client/index.html"
