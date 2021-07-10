@@ -28,6 +28,11 @@ while True:
         time.sleep(0.1)
         
 # Start Streaming
-
+while True:
+    try:
+        driver.execute_script('document.querySelector(\'[aria-label="Share Your Screen"]\').click()')
+        break
+    except:
+        time.sleep(0.1)
 
 time.sleep(9999999)
