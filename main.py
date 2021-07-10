@@ -16,6 +16,7 @@ driver.get(url)
 
 # Load video
 driver.execute_script(f"video.src='{video_path}'")
+driver.execute_script("video.play()")
 
 # Start Streaming
 
