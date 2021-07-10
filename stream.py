@@ -60,9 +60,19 @@ class Stream:
     	print("Joining voice channel...")
 		while True:
 		    try:
+		    	self.scroll()
 
-		        driver.execute_script(f'document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").click()')
+		    	if self.is_locked():
+		    		print("Channel is locked")
+            		break
 
+		        self.driver.execute_script(f'document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").click()')
+
+		        if self.is_full():	
+            		print("Channel is full")
+            		break
+
+		        print("Joined")
 		        break
 		    except:
 		        time.sleep(0.01)  
