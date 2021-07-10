@@ -48,16 +48,22 @@ while True:
                 c_inject.scroll(0, c_inject.scrollTop + 1000)
         ''')
 
-        # Check if voice channel is locked
+        # Locked
         if driver.execute_script(f'return document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").innerHTML.includes("Voice (Locked)")'):
             print("Channel is locked")
             break
 
         driver.execute_script(f'document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").click()')
+        
+        # Full
+        if driver.execute_script(f'return document.querySelector("[aria-label=\'Channel is full\']")'):
+            print("Channel is full")
+            break
+
+        print("Joined") 
         break
     except:
-        time.sleep(0.01)
-print("Joined")        
+        time.sleep(0.01)       
 
 # Start Streaming
 while True:
