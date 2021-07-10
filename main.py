@@ -45,18 +45,20 @@ while True:
             if( c_inject.scrollTop === (c_inject.scrollHeight - c_inject.offsetHeight))
                 c_inject.scroll(0, 0)
             else
-                c_inject.scroll(0, c_inject.scrollTop + 2000)
+                c_inject.scroll(0, c_inject.scrollTop + 1000)
         ''')
 
         # Check if voice channel is locked
-        if driver.execute_script(f'document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").innerHTML.includes("Voice (Locked)")'):
+        if driver.execute_script(f'return document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").innerHTML.includes("Voice (Locked)")'):
             print("Channel is locked")
+            break
 
         driver.execute_script(f'document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").click()')
         break
     except:
         time.sleep(0.01)
-        
+print("Joined")        
+
 # Start Streaming
 while True:
     try:
