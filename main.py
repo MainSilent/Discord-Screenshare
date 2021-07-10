@@ -6,6 +6,7 @@ import time
 from selenium.webdriver import Chrome, ChromeOptions
 
 url = f"file://{os.getcwd()}/index.html"
+guild_id = 578558255392096256
 channel_id = 859818307870523456
 video_path = "./video.mp4"
 
@@ -26,7 +27,7 @@ driver.execute_script(f"video.src='{video_path}'")
 # Join voice channel
 while True:
     try:
-        driver.execute_script('document.getElementsByClassName("acronym-2mOFsV")[0].click()')
+        driver.execute_script(f'document.querySelector(\'[data-list-item-id="guildsnav___{guild_id}"]\').click()')
         driver.execute_script(f'document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").click()')
         break
     except:
