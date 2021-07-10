@@ -7,12 +7,12 @@ from selenium.webdriver import Chrome, ChromeOptions
 
 url = f"file://{os.getcwd()}/index.html"
 guild_id = 578558255392096256
-channel_id = 859818307870523456
+channel_id = 863407782316081202
 video_path = "./video.mp4"
 
 # Open index page
 options = ChromeOptions()
-options.add_argument('--headless')
+#options.add_argument('--headless')
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-web-security')
 options.add_argument('--disable-dev-shm-usage')
