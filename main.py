@@ -11,6 +11,7 @@ video_path = "./video.mp4"
 
 # Open index page
 options = ChromeOptions()
+options.add_argument('--headless')
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-web-security')
 options.add_argument('-–allow-file-access-from-files')
