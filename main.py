@@ -9,7 +9,9 @@ s.load_video("./video.mp4")
 s.open_guild()
 s.join()
 s.start()
+s.play()
 
 time.sleep(20)
 
+s.pause()
 s.stop()

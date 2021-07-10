@@ -10,11 +10,11 @@ class Video:
 		print("Loading video...")
 		self.driver.execute_script(f"video.src='{url}'")
 
-	def play():
+	def play(self):
 		print("Play")
 		self.driver.execute_script(f"video.play()")
 
-	def pause():
+	def pause(self):
 		print("Pause")
 		self.driver.execute_script(f"video.pause()")
 
