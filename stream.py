@@ -8,13 +8,13 @@ from selenium.webdriver import Chrome, ChromeOptions
 class Stream:
 	client_url = f"file://{os.getcwd()}/client/index.html"
 
-	def __init__(self, guild_id, channel_id):
+	def __init__(self, guild_id, channel_id, headless=True):
 		self.guild_id = guild_id
 		self.channel_id = channel_id
 
 		# Open index page
 		options = ChromeOptions()
-		options.add_argument('--headless')
+		options.add_argument('--headless') if headless else None
 		options.add_argument('--no-sandbox')
 		options.add_argument('--disable-web-security')
 		options.add_argument('--disable-dev-shm-usage')
