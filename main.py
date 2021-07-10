@@ -1,26 +1,9 @@
-import undetected_chromedriver as uc
-uc.install()
-
-import os
-import time
-from selenium.webdriver import Chrome, ChromeOptions
-
-url = f"file://{os.getcwd()}/client/index.html"
 guild_id = 578558255392096256
 channel_id = 863407782316081202
-video_path = "./video.mp4"
 
-# Open index page
-options = ChromeOptions()
-options.add_argument('--headless')
-options.add_argument('--no-sandbox')
-options.add_argument('--disable-web-security')
-options.add_argument('--disable-dev-shm-usage')
-options.add_argument('-–allow-file-access-from-files')
-options.add_argument('--autoplay-policy=no-user-gesture-required')
-driver = Chrome(executable_path="./chromedriver", options=options)
-print("Opening page...")
-driver.get(url)
+
+
+
 
 # Load video
 print("Loading video...")
