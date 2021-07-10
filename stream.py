@@ -53,7 +53,7 @@ class Stream:
             if( c_inject.scrollTop === (c_inject.scrollHeight - c_inject.offsetHeight))
                 c_inject.scroll(0, 0)
             else
-                c_inject.scroll(0, c_inject.scrollTop + 1000)
+                c_inject.scroll(0, c_inject.scrollTop + 100)
         ''')
 
     def join(self):
