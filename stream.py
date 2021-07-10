@@ -5,7 +5,12 @@ import os
 import time
 from selenium.webdriver import Chrome, ChromeOptions
 
-class Stream:
+class Video:
+	def load_video(self, url):
+		print("Loading video...")
+		self.driver.execute_script(f"video.src='{url}'")
+
+class Stream(Video):
 	client_url = f"file://{os.getcwd()}/client/index.html"
 
 	def __init__(self, guild_id, channel_id, headless=True):
@@ -24,10 +29,6 @@ class Stream:
 		self.driver = Chrome(executable_path="./chromedriver", options=options)
 		print("Opening page...")
 		self.driver.get(self.client_url)
-
-	def load_video(self, url):
-		print("Loading video...")
-		self.driver.execute_script(f"video.src='{url}'")
 
 	def open_guild(self):
 		print("Opening guild...")
