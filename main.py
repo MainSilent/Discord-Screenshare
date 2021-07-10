@@ -19,12 +19,15 @@ options.add_argument('--disable-dev-shm-usage')
 options.add_argument('-–allow-file-access-from-files')
 options.add_argument('--autoplay-policy=no-user-gesture-required')
 driver = Chrome(executable_path="./chromedriver", options=options)
+print("Opening page...")
 driver.get(url)
 
 # Load video
+print("Loading video...")
 driver.execute_script(f"video.src='{video_path}'")
 
 # Open guild
+print("Opening guild...")
 while True:
     try:
         driver.execute_script(f'document.querySelector(\'[data-list-item-id="guildsnav___{guild_id}"]\').click()')
@@ -33,6 +36,7 @@ while True:
         time.sleep(0.1)
 
 # Join voice channel
+print("Joining voice channel...")
 while True:
     try:
         # Scroll until find the voice channel
