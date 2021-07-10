@@ -22,7 +22,7 @@ class Stream:
 		options.add_argument('--autoplay-policy=no-user-gesture-required')
 		self.driver = Chrome(executable_path="./chromedriver", options=options)
 		print("Opening page...")
-		driver.get(self.client_url)
+		self.driver.get(self.client_url)
 
 	def load_video(self, url):
 		print("Loading video...")
