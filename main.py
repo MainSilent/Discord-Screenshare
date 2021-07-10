@@ -12,7 +12,7 @@ video_path = "./video.mp4"
 
 # Open index page
 options = ChromeOptions()
-#options.add_argument('--headless')
+options.add_argument('--headless')
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-web-security')
 options.add_argument('--disable-dev-shm-usage')
@@ -37,7 +37,7 @@ while True:
     try:
         driver.execute_script('''
             var c_inject = document.getElementById("channels");
-            c_inject.scroll(0, c_inject.scrollTop + 300)
+            c_inject.scroll(0, c_inject.scrollTop + 2000)
         ''')
         driver.execute_script(f'document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").click()')
         break
