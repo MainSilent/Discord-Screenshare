@@ -78,9 +78,9 @@ class Stream:
 				time.sleep(0.01)  
 
 		def start(self):
-		while True:
-			try:
-				self.driver.execute_script('document.querySelector(\'[aria-label="Share Your Screen"]\').click()')
-				break
-			except:
-				time.sleep(0.1)
+			while True:
+				try:
+					self.driver.execute_script('document.querySelector(\'[aria-label="Share Your Screen"]\').click()')
+					break
+				except:
+					time.sleep(0.1)
