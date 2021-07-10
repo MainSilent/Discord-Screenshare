@@ -34,10 +34,10 @@ while True:
 
 # Join voice channel
 while True:
-    driver.execute_script('var c_inject = document.getElementById("channels")')
     try:
-        driver.execute_script(f'document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").click()')
+        driver.execute_script('var c_inject = document.getElementById("channels")')
         driver.execute_script('c_inject.scroll(0, c_inject.scrollTop + 300)')
+        driver.execute_script(f'document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").click()')
         break
     except:
         time.sleep(0.01)
