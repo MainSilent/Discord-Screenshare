@@ -3,6 +3,7 @@ import time
 from selenium.webdriver import Chrome, ChromeOptions
 
 url = f"file://{os.getcwd()}/index.html"
+channel_id = 859818307870523456
 video_path = "./video.mp4"
 
 # Open index page
@@ -16,8 +17,17 @@ driver.get(url)
 
 # Load video
 driver.execute_script(f"video.src='{video_path}'")
-driver.execute_script("video.play()")
 
+# Join voice channel
+while True:
+    try:
+        driver.execute_script('document.getElementsByClassName("acronym-2mOFsV")[0].click()')
+        driver.execute_script(f'document.querySelector("[data-list-item-id=\'channels___{channel_id}\']").click()')
+        break
+    except:
+        time.sleep(0.1)
+        
 # Start Streaming
+
 
 time.sleep(9999999)
