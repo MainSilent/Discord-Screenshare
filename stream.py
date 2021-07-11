@@ -8,13 +8,7 @@ from selenium.webdriver import Chrome, ChromeOptions
 class Video:
 	def load_video(self, url, youtube_dl=False):
 		if youtube_dl:
-			tmp_path = "./client/tmp"
-			os.system(f"rm -rf {tmp_path}/*")
-			print("Downloading...")
-			if os.system(f'youtube-dl "{url}" -o {tmp_path}/video'):
-				print("Failed to download")
-				return False
-			os.system(f"mv {tmp_path}/* {tmp_path}/video")
+			self.download(url)
 			url = "./tmp/video"
 
 		print("Loading video...")
@@ -25,6 +19,15 @@ class Video:
 			time.sleep(0.05)
 
 		self.duration = self.driver.execute_script("return video.duration")
+
+	def download(self, url):
+		tmp_path = "./client/tmp"
+		os.system(f"rm -rf {tmp_path}/*")
+		print("Downloading...")
+		if os.system(f'youtube-dl "{url}" -o {tmp_path}/video'):
+			print("Failed to download")
+			return False
+		os.system(f"mv {tmp_path}/* {tmp_path}/video")
 
 	def play(self):
 		print("Play")
