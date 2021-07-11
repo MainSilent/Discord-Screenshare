@@ -2,7 +2,55 @@ const webdriver = require('selenium-webdriver')
 const chrome = require('selenium-webdriver/chrome')
 
 class Video {
+    load(url, youtube_dl=true) {
+		if (youtube_dl) {
+			console.log("Downloading...")
+			this.download(url)
+			url = "./tmp/video"
+        }
 
+		this.driver.executeScript(`video.src='${url}'`)
+		
+		// Wait until video load
+		this.driver.executeScript("return video.readyState > 0")
+            .then(result => {
+                this.driver.executeScript("return video.duration")
+                    .then(result => {
+                        this.duration = result
+                    })
+            })
+    }
+
+    download() {
+        /*
+        tmp_path = "./client/tmp"
+		os.system(f"rm -rf {tmp_path}/*")
+		if os.system(f'youtube-dl "{url}" -o {tmp_path}/video'):
+			print("Failed to download")
+			return False
+		os.system(f"mv {tmp_path}/* {tmp_path}/video")
+        */
+    }
+
+    play() {
+        console.log("Play")
+        this.driver.executeScript('video.play()')
+    }
+
+    pause() {
+        console.log("Pause")
+        this.driver.executeScript('video.pause()')
+    }
+
+    current(time=null) {
+        if (time)
+            this.driver.executeScript(`video.currentTime = ${time}`)
+        else
+            this.driver.executeScript("return video.currentTime")
+                .then(result => {
+                    return result
+                })
+    }
 }
 
 class Stream extends Video {
