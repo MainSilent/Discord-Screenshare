@@ -46,10 +46,7 @@ class Video:
 class Stream(Video):
 	client_url = f"file://{os.getcwd()}/client/index.html"
 
-	def __init__(self, token, guild_id, channel_id, headless=True):
-		self.guild_id = guild_id
-		self.channel_id = channel_id
-
+	def __init__(self, token, headless=True):
 		# Open index page
 		options = ChromeOptions()
 		options.add_argument('--headless') if headless else None
