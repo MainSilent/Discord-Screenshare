@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node main.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/MainSilent/DiscordStream#readme",
   "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0",
     "selenium-webdriver": "^4.0.0-beta.4"
   }
 }
