@@ -8,14 +8,13 @@ from selenium.webdriver import Chrome, ChromeOptions
 class Video:
 	def load_video(self, url, youtube_dl=False):
 		if youtube_dl:
-			os.system("rm -rf ./client/tmp/*")
-
+			tmp_path = "./client/tmp"
+			os.system(f"rm -rf {tmp_path}/*")
 			print("Downloading...")
-			if os.system(f'youtube-dl "{url}" -o ./client/tmp/video'):
+			if os.system(f'youtube-dl "{url}" -o {tmp_path}/video'):
 				print("Failed to download")
 				return False
-
-			os.system("mv ./client/tmp/* video")
+			os.system(f"mv {tmp_path}/* {tmp_path}/video")
 			url = "./tmp/video"
 
 		print("Loading video...")
