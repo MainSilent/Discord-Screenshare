@@ -9,7 +9,8 @@ class Video:
 	def load_video(self, url, youtube_dl=False):
 		if youtube_dl:
 			print("Downloading...")
-			url = "./video"
+
+			url = "./tmp/video"
 
 		print("Loading video...")
 		self.driver.execute_script(f"video.src='{url}'")
