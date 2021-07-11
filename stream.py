@@ -9,9 +9,12 @@ class Video:
 	def load_video(self, url):
 		print("Loading video...")
 		self.driver.execute_script(f"video.src='{url}'")
+		
 		# Wait until video load
-		while not self.driver.execute_script("return video.readyState >= 3"):
+		while not self.driver.execute_script("return video.readyState > 0"):
 			time.sleep(0.05)
+
+		self.duration = self.driver.execute_script("return video.duration")
 
 	def play(self):
 		print("Play")
@@ -20,9 +23,6 @@ class Video:
 	def pause(self):
 		print("Pause")
 		self.driver.execute_script("video.pause()")
-
-	def duration(self):
-		return self.driver.execute_script("return video.duration")
 
 	def current(self, time=None):
 		if time:
