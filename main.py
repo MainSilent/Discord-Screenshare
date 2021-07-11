@@ -19,7 +19,7 @@ async def on_ready():
 async def p(ctx):
 	if s.in_progress:
 		return await ctx.send('Another session is already in progress')
-	in_progress = True
+	s.in_progress = True
 
 	voice = ctx.message.author.voice
 	if ctx.message.author.voice is None:
