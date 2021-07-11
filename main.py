@@ -17,10 +17,9 @@ async def on_ready():
 @bot.command()
 async def p(ctx):
 	voice = ctx.message.author.voice
-
 	if ctx.message.author.voice is None:
 		return await ctx.send('You need to be in a voice channel to use this command')
-
+		
 	guild_id = ctx.guild.id
 	channel_id = voice.channel.id
 	url = ctx.message.content.split()[1]
