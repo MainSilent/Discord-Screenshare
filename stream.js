@@ -18,7 +18,6 @@ class Stream extends Video {
         chrome_options.addArguments('-–allow-file-access-from-files')
         chrome_options.addArguments('--autoplay-policy=no-user-gesture-required')
         this.driver = new webdriver.Builder().forBrowser('chrome').setChromeOptions(chrome_options).build()
-
         this.driver.get(client_url)
         this.driver.executeScript(`localStorage.setItem("token", '"${token}"')`)
     }
