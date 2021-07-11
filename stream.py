@@ -6,7 +6,11 @@ import time
 from selenium.webdriver import Chrome, ChromeOptions
 
 class Video:
-	def load_video(self, url):
+	def load_video(self, url, youtube_dl=False):
+		if youtube_dl:
+			print("Downloading...")
+			url = "./video"
+
 		print("Loading video...")
 		self.driver.execute_script(f"video.src='{url}'")
 		
