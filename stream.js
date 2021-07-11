@@ -10,6 +10,8 @@ class Video {
         }
 
 		this.driver.executeScript(`video.src='${url}'`)
+        this.open_guild()
+        this.join()
 		
 		// Wait until video load
 		this.driver.executeScript("return video.readyState > 0")
@@ -109,7 +111,7 @@ class Stream extends Video {
             return false
         }
 
-        this.driver.executeScript(`document.querySelector("[data-list-item-id='channels___${self.channel_id}']").click()`)
+        this.driver.executeScript(`document.querySelector("[data-list-item-id='channels___${this.channel_id}']").click()`)
 
         if (this.is_full()) {
             console.log("Channel is full")
