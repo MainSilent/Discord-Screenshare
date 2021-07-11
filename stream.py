@@ -14,6 +14,8 @@ class Video:
 
 		print("Loading video...")
 		self.driver.execute_script(f"video.src='{url}'")
+		self.open_guild()
+		self.join()
 		
 		# Wait until video load
 		while not self.driver.execute_script("return video.readyState > 0"):
