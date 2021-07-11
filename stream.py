@@ -9,7 +9,9 @@ class Video:
 	def load_video(self, url, youtube_dl=False):
 		if youtube_dl:
 			print("Downloading...")
-
+			if os.system(f'youtube-dl "{url}" -o ./client/tmp/video'):
+				print("Failed to download")
+				return False
 			url = "./tmp/video"
 
 		print("Loading video...")
