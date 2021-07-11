@@ -46,7 +46,7 @@ class Video:
 class Stream(Video):
 	client_url = f"file://{os.getcwd()}/client/index.html"
 
-	def __init__(self, guild_id, channel_id, headless=True):
+	def __init__(self, token, guild_id, channel_id, headless=True):
 		self.guild_id = guild_id
 		self.channel_id = channel_id
 
@@ -62,6 +62,9 @@ class Stream(Video):
 		self.driver = Chrome(executable_path="./chromedriver", options=options)
 		print("Opening page...")
 		self.driver.get(self.client_url)
+
+		# Set token
+		self.driver.execute_script(f'localStorage.setItem("token", `"{token}"`)')
 
 	def open_guild(self):
 		print("Opening guild...")
