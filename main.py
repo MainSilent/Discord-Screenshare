@@ -4,8 +4,8 @@ from stream import Stream
 from dotenv import load_dotenv; load_dotenv()
 
 token = os.getenv("token")
-guild_id = 578558255392096256
-channel_id = 839833383756365834
+guild_id = 859818307870523452
+channel_id = 859818307870523456
 
 s = Stream(token, guild_id, channel_id)
 s.load_video("./tmp/video")
