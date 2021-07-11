@@ -28,8 +28,7 @@ async def p(ctx):
 	s.guild_id = ctx.guild.id
 	s.channel_id = voice.channel.id
 	url = ctx.message.content.split()[1]
-
-	Thread(target=s.load_video, args=(url,)).start()
+	await s.load_video(url, ctx)
 
 bot.run(token)
 
