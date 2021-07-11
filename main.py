@@ -12,6 +12,15 @@ bot = commands.Bot(command_prefix='*')
 async def on_ready():
 	print('Ready')
 
+
+@bot.command()
+async def p(ctx):
+	if ctx.message.author.voice is None:
+		return await ctx.send('You need to be in a voice channel to use this command')
+
+	url = ctx.message.content.split()[1]
+	
+
 bot.run(token)
 
 
