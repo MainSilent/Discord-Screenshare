@@ -1,7 +1,9 @@
+import os
 import time
 from stream import Stream
+from dotenv import load_dotenv; load_dotenv()
 
-token = "ODU2OTAwOTcxMTg3NjY2OTU0.YNHxug.BWxBwke26nhAI2kCMu0c-6JGBYs"
+token = os.getenv("token")
 guild_id = 578558255392096256
 channel_id = 839833383756365834
 
