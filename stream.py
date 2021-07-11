@@ -44,6 +44,7 @@ class Video:
 			return self.driver.execute_script("return video.currentTime")
 
 class Stream(Video):
+	in_progress = False
 	client_url = f"file://{os.getcwd()}/client/index.html"
 
 	def __init__(self, token, headless=True):
