@@ -16,6 +16,7 @@ client.on('message', msg => {
         
         switch (command) {
             case 'p':
+                stream.owner = msg.author.id
                 stream.guild_id = msg.guild.id
                 stream.channel_id = msg.member.voiceChannel.id
                 url = content[1]
