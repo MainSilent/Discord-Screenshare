@@ -31,8 +31,6 @@ class Video {
                                         this.join()
                                         this.start()
                                         clearInterval(int)
-                                        this.in_loading = false
-                                        msg.edit("Done, Type `*play` to start playing.")
                                     }
                                 })
                         }, 10)
@@ -45,6 +43,8 @@ class Video {
                 .then(result => {
                     if (result) {
                         this.duration = result
+                        this.in_loading = false
+                        msg.edit("Done, Type `*play` to start playing.")
                         clearInterval(int)
                     }
                 })
