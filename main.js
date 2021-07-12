@@ -9,6 +9,10 @@ const client = new Discord.Client()
 const token = process.env.token
 let stream = new Stream(token)
 
+const allowed = msg => {
+    return stream.owner !== msg.author.id && !msg.member.hasPermission('ADMINISTRATOR')
+}
+
 client.on('ready', () => console.log("Bot started"))
 
 client.on('message', msg => {
@@ -18,7 +22,7 @@ client.on('message', msg => {
         
         switch (command) {
             case 'p':
-                if (stream.in_progress && stream.owner !== msg.author.id && !msg.member.hasPermission('ADMINISTRATOR')) {
+                if (stream.in_progress && allowed(msg)) {
                     msg.reply("Another session is already in progress")
                     return
                 }
