@@ -7,25 +7,32 @@ const youtubeDlWrap = new YoutubeDlWrap()
 class Video {
     async load(url, youtube_dl, msg) {
 		if (youtube_dl) {
-			console.log("Downloading...")
-			const fileName = await this.download(url, msg)
-			url = __dirname + "/client/tmp/" + fileName
+            await msg.edit("Downloading...")
+                .then(async msg => {
+                    console.log("Downloading...")
+                    const fileName = await this.download(url, msg)
+                    url = __dirname + "/client/tmp/" + fileName
+                })
         }
 
 		await this.driver.executeScript(`video.src='${url}'`)
             .then(_ => {
-                console.log('Loading...')
-                var int = setInterval(() => {
-                    this.driver.getCurrentUrl()
-                        .then(url => {
-                            if (url === "file:///channels/@me") {
-                                this.open_guild()
-                                this.join()
-                                this.start()
-                                clearInterval(int)
-                            }
-                        })
-                }, 10)
+                msg.edit("Loading...")
+                    .then(_ => {
+                        console.log('Loading...')
+                        var int = setInterval(() => {
+                            this.driver.getCurrentUrl()
+                                .then(url => {
+                                    if (url === "file:///channels/@me") {
+                                        this.open_guild()
+                                        this.join()
+                                        this.start()
+                                        clearInterval(int)
+                                        msg.edit("Done, Type `*play` to start playing.")
+                                    }
+                                })
+                        }, 10)
+                    })
             })
 		
 		// Wait until video load
