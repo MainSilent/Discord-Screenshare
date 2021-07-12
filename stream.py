@@ -6,13 +6,12 @@ import time
 from selenium.webdriver import Chrome, ChromeOptions
 
 class Video:
-	async def load_video(self, url, ctx=None, youtube_dl=False):
+	def load_video(self, url, youtube_dl=False):
 		if youtube_dl:
 			print("Downloading...")
 			self.download(url)
 			url = "./tmp/video"
 
-		await ctx.send("Loading video...")
 		self.driver.execute_script(f"video.src='{url}'")
 		self.open_guild()
 		self.join()
