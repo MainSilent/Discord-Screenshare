@@ -72,17 +72,19 @@ class Video {
     current(time=null) {
         if (time) {
             if (time[0] === '+' || time[0] === '-') {
-                c = this.current()
+                let c = this.current()
                 if (!c) return
                 c = parseInt(c)
-                s = parseInt(time.slice(1)) 
+                const s = parseInt(time.slice(1)) 
 
                 time[0] === '+' ?
                     r = c + s :
                     r = c - s
+
+                time = r
             }
-            else
-                this.driver.executeScript(`video.currentTime = ${time}`)
+
+            this.driver.executeScript(`video.currentTime = ${time}`)
         }
         else
             return this.driver.executeScript("return video.currentTime")
