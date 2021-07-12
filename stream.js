@@ -14,7 +14,7 @@ class Video {
                 setInterval(() => {
                     this.driver.getCurrentUrl()
                         .then(url => {
-                            url == "file:///channels/@me" &&
+                            if (url === "file:///channels/@me")
                                 this.open_guild() && this.join()
                         })
                 }, 10)
