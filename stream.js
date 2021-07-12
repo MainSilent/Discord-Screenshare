@@ -32,8 +32,10 @@ class Video {
         var int = setInterval(() => {
             this.driver.executeScript("return video.duration")
                 .then(result => {
-                    this.duration = result
-                    result && clearInterval(int)
+                    if (result) {
+                        this.duration = result
+                        clearInterval(int)
+                    }
                 })
         }, 10)
     }
@@ -72,6 +74,12 @@ class Video {
             this.driver.executeScript(`video.currentTime = ${time}`)
         else
             return this.driver.executeScript("return video.currentTime")
+    }
+
+    hms(sec) {
+        if (sec)
+            return new Date(sec * 1000).toISOString().substr(11, 8)
+        return sec
     }
 }
 
