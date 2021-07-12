@@ -13,9 +13,11 @@ class Video {
             .then(_ => {
                 setInterval(() => {
                     this.driver.getCurrentUrl()
-                        .then(url => {
-                            if (url === "file:///channels/@me")
-                                this.open_guild() && this.join()
+                        .then(async url => {
+                            if (url === "file:///channels/@me") {
+                                await this.open_guild()
+                                this.join()
+                            }
                         })
                 }, 10)
             })
