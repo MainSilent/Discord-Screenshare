@@ -48,7 +48,7 @@ client.on('message', msg => {
                             else
                                 stream.load(url, false, msg)
                         }) :
-                    msg.react(reject)
+                    msg.reply("Another video loading is already in progress, Try again later.")
                 break;
             case 'play':
                 notAllowed(msg) ?
