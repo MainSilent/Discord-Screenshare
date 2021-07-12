@@ -9,7 +9,7 @@ class Video {
 		if (youtube_dl) {
 			console.log("Downloading...")
 			await this.download(url)
-			url = "./tmp/video"
+			url = __dirname + "/client/tmp/video"
         }
 
 		await this.driver.executeScript(`video.src='${url}'`)
