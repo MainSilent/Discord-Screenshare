@@ -45,7 +45,3 @@ client.on('message', msg => {
 })
 
 client.login(token)
-
-// stream.guild_id = "859818307870523452"
-// stream.channel_id = "859818307870523456"
-// stream.load('https://www.youtube.com/watch?v=tNDYFYVvRGA', true)
