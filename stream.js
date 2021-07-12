@@ -74,11 +74,11 @@ class Video {
 }
 
 class Stream extends Video {
-    constructor(token) {
+    constructor(token, headless=true) {
         super()
         const client_url = `file://${__dirname}/client/index.html`
         const chrome_options = new chrome.Options()
-        //chrome_options.addArguments('--headless')
+        headless && chrome_options.addArguments('--headless')
         chrome_options.addArguments('--no-sandbox')
         chrome_options.addArguments('--window-size=1920,1080')
         chrome_options.addArguments('--disable-web-security')

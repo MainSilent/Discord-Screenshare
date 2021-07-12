@@ -6,19 +6,11 @@
   "scripts": {
     "start": "node main.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MainSilent/DiscordStream.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MainSilent/DiscordStream/issues"
-  },
-  "homepage": "https://github.com/MainSilent/DiscordStream#readme",
   "dependencies": {
-    "discord.js": "^12.5.3",
+    "discord.js-self": "^12.0.4",
     "dotenv": "^10.0.0",
     "selenium-webdriver": "^4.0.0-beta.4",
     "youtube-dl-wrap": "^2.1.0"
