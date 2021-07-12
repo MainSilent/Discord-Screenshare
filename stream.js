@@ -13,10 +13,11 @@ class Video {
             .then(_ => {
                 var int = setInterval(() => {
                     this.driver.getCurrentUrl()
-                        .then(async url => {
+                        .then(url => {
                             if (url === "file:///channels/@me") {
-                                await this.open_guild()
+                                this.open_guild()
                                 this.join()
+                                this.start()
                                 clearInterval(int)
                             }
                         })
@@ -129,7 +130,11 @@ class Stream extends Video {
     }
 
     start() {
-        this.driver.executeScript(`document.querySelector('[aria-label="Share Your Screen"]').click()`)
+        this.driver.executeScript(`
+                var streamBtn_inject = document.querySelector('[aria-label="Share Your Screen"]')
+                !streamBtn_inject.className.includes('buttonActive-3FrkXp') &&
+                    streamBtn_inject.click()
+        `).catch(e => e)
     }
 
     stop() {

@@ -9,15 +9,9 @@ stream.channel_id = "859818307870523456"
 stream.load('./tmp/video')
 
 setTimeout(() => {
-    stream.start()
     stream.play() 
-
     setTimeout(() => {
-        stream.pause()
-        setTimeout(() => {
-            stream.stop()
-        }, 5000)
-        
-    }, 10000)
+        console.log(stream.current());
+    }, 8000)
     
-}, 5000)
+}, 20000)
