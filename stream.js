@@ -72,7 +72,9 @@ class Video {
     current(time=null) {
         if (time) {
             if (time[0] === '+' || time[0] === '-') {
-                c = parseInt(current())
+                c = this.current()
+                if (!c) return
+                c = parseInt(c)
                 s = parseInt(time.slice(1)) 
 
                 time[0] === '+' ?
