@@ -79,7 +79,7 @@ client.on('message', msg => {
                     })
                 break;
             case 'stop':
-                if (notAllowed(msg)) 
+                if (notAllowed(msg) || stream.in_loading) 
                     msg.react(reject)
                 else {
                     stream.stop()
