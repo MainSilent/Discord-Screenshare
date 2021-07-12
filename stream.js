@@ -145,8 +145,10 @@ class Stream extends Video {
     }
 
     stop() {
-        this.driver.close()
-        this.driver.quit()
+        this.driver.executeScript(`document.querySelector('[aria-label="Disconnect"]').click()`)
+            .catch(e => e)
+        // this.driver.close()
+        // this.driver.quit()
     }
 }
 
