@@ -55,10 +55,11 @@ client.on('message', msg => {
                     stream.pause()
                 break;
             case 'duration':
-                if (stream.duration)
-                    msg.channel.send(stream.hms(stream.duration))
-                else
-                    msg.reply("N/A, try again later")
+                notAllowed(msg) ?
+                    msg.react(reject) :
+                        stream.duration ?
+                            msg.channel.send(stream.hms(stream.duration)) :
+                            msg.reply("N/A, try again later")
                 break;
             case 'current':
                 if (content[1])
