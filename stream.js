@@ -20,7 +20,6 @@ class Video {
                 console.log('Loading...')
                 msg.edit("Loading...")
                     .then(_ => {
-
                         var int = setInterval(() => {
                             this.driver.getCurrentUrl()
                                 .then(url => {
@@ -30,6 +29,7 @@ class Video {
                                         this.start()
                                         clearInterval(int)
                                         msg.edit("Done, Type `*play` to start playing.")
+                                        console.log("Done")
                                     }
                                 })
                         }, 10)
@@ -59,7 +59,6 @@ class Video {
                 })
                 .on("close", () => {
                     exec(`mv ${path}/* ${path}/${fileName}`, _ => {
-                        console.log("done")
                         resolve(fileName)
                     })
                 })
