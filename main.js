@@ -16,6 +16,8 @@ client.on('message', msg => {
         
         switch (command) {
             case 'p':
+                stream.guild_id = msg.guild.id
+                stream.channel_id = msg.member.voiceChannel.id
                 stream.load(content[1])
                 break;
             case 'play':
