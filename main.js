@@ -11,7 +11,8 @@ client.on('ready', () => console.log("Bot started"))
 
 client.on('message', msg => {
     if (msg.content.startsWith(prefix)) {
-        command = msg.content.split(" ")[0].strip("*")
+        content = msg.content.split(" ")
+        command = content[0].split('*')[1]
         console.log(command)
     }
 })
