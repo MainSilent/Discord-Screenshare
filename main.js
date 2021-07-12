@@ -13,7 +13,18 @@ client.on('message', msg => {
     if (msg.content.startsWith(prefix)) {
         content = msg.content.split(" ")
         command = content[0].split('*')[1]
-        console.log(command)
+        
+        switch (command) {
+            case 'p':
+                stream.load(content[1])
+                break;
+            case 'play':
+                stream.play()
+                break;
+            case 'pause':
+                stream.pause()
+                break;
+        }
     }
 })
 

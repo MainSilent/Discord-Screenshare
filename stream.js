@@ -14,6 +14,7 @@ class Video {
 
 		await this.driver.executeScript(`video.src='${url}'`)
             .then(_ => {
+                console.log('Loading...')
                 var int = setInterval(() => {
                     this.driver.getCurrentUrl()
                         .then(url => {
