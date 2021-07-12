@@ -61,7 +61,9 @@ client.on('message', msg => {
                 break;
             case 'current':
                 if (content[1])
-                    stream.current(content[1])
+                    notAllowed(msg) ?
+                        msg.react(reject) :
+                        stream.current(content[1])
                 else
                     stream.current().then(result => {
                         if (result)
