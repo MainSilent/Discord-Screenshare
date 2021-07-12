@@ -1,5 +1,8 @@
+const { exec } = require("child_process")
 const webdriver = require('selenium-webdriver')
 const chrome = require('selenium-webdriver/chrome')
+const YoutubeDlWrap = require("youtube-dl-wrap")
+const youtubeDlWrap = new YoutubeDlWrap()
 
 class Video {
     async load(url, youtube_dl=false) {
@@ -34,16 +37,22 @@ class Video {
         }, 10)
     }
 
-    download() {
-        return null;
-        /*
-        tmp_path = "./client/tmp"
-		os.system(f"rm -rf {tmp_path}/*")
-		if os.system(f'youtube-dl "{url}" -o {tmp_path}/video'):
-			print("Failed to download")
-			return False
-		os.system(f"mv {tmp_path}/* {tmp_path}/video")
-        */
+    download(url) {
+        return new Promise((resolve, reject) => {
+            const path = "./client/tmp"
+            exec(`rm -rf ${path}/*`, _ => {
+                youtubeDlWrap.exec([url, "-o", `${path}/video`])
+                .on("progress", progress => {
+                    console.log(progress);
+                })
+                .on("close", () => {
+                    exec(`mv ${path}/* ${path}/video`, _ => {
+                        resolve()
+                        console.log("done");
+                    })
+                })
+            })
+        })
     }
 
     play() {

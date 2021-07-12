@@ -20,6 +20,7 @@
   "dependencies": {
     "discord.js": "^12.5.3",
     "dotenv": "^10.0.0",
-    "selenium-webdriver": "^4.0.0-beta.4"
+    "selenium-webdriver": "^4.0.0-beta.4",
+    "youtube-dl-wrap": "^2.1.0"
   }
 }
