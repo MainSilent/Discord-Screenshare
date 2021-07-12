@@ -18,12 +18,18 @@ client.on('message', msg => {
         
         switch (command) {
             case 'p':
+                if (stream.in_progress) {
+                    msg.reply("Another session is already in progress")
+                    return
+                }
+
                 const voice_channel = msg.member.voiceChannel
                 if (!voice_channel) {
                     msg.reply("You need to be in a voice channel to use this command")
                     return
                 }
 
+                stream.in_progress = true
                 stream.owner = msg.author.id
                 stream.guild_id = msg.guild.id
                 stream.channel_id = voice_channel.id
