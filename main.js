@@ -33,7 +33,7 @@ client.on('message', msg => {
                 break;
             case 'duration':
                 if (stream.duration)
-                    msg.channel.send(stream.duration)
+                    msg.channel.send(stream.hms(stream.duration))
                 else
                     msg.reply("N/A, try again later")
                 break;
@@ -43,7 +43,7 @@ client.on('message', msg => {
                 else
                     stream.current().then(result => {
                         if (result)
-                            msg.channel.send(result)
+                            msg.channel.send(stream.hms(result))
                         else
                             msg.reply("N/A, try again later")     
                     })
