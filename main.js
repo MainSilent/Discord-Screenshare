@@ -10,7 +10,7 @@ const token = process.env.token
 let stream = new Stream(token)
 
 const allowed = msg => {
-    return stream.owner !== msg.author.id && !msg.member.hasPermission('ADMINISTRATOR')
+    return stream.owner !== msg.author.id && msg.member.hasPermission('ADMINISTRATOR')
 }
 
 client.on('ready', () => console.log("Bot started"))
