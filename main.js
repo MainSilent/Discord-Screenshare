@@ -20,7 +20,7 @@ client.on('message', msg => {
                 stream.channel_id = msg.member.voiceChannel.id
                 url = content[1]
                 // not safe...
-                if (url.includes('youtube.com') || url.includes('xnxx.com') || url.includes('pornhub.com'))
+                if (url.includes('youtube.com') || url.includes('xnxx.com'))
                     stream.load(url, true)
                 else
                     stream.load(url)
