@@ -16,15 +16,15 @@ client.on('message', msg => {
         
         switch (command) {
             case 'p':
-                voice_channel_id = msg.member.voiceChannel.id
-                if (!voice_channel_id) {
+                const voice_channel = msg.member.voiceChannel
+                if (!voice_channel) {
                     msg.reply("You need to be in a voice channel to use this command")
                     return
                 }
 
                 stream.owner = msg.author.id
                 stream.guild_id = msg.guild.id
-                stream.channel_id = voice_channel_id
+                stream.channel_id = voice_channel.id
                 url = content[1]
                 // not safe...
                 if (url.includes('youtube.com') || url.includes('xnxx.com'))
