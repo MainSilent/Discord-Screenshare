@@ -32,6 +32,10 @@ client.on('message', msg => {
             case 'current':
                 if (content[1])
                     stream.current(content[1])
+                else
+                    stream.current().then(result => {
+                        msg.channel.send(result)
+                    })
                 break;
             case 'stop':
                 stream.stop()
