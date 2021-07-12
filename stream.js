@@ -8,8 +8,8 @@ class Video {
     async load(url, youtube_dl=false) {
 		if (youtube_dl) {
 			console.log("Downloading...")
-			await this.download(url)
-			url = __dirname + "/client/tmp/video"
+			const fileName = await this.download(url)
+			url = __dirname + "/client/tmp/" + fileName
         }
 
 		await this.driver.executeScript(`video.src='${url}'`)
@@ -40,6 +40,7 @@ class Video {
 
     download(url) {
         return new Promise((resolve, reject) => {
+            const fileName = Date.now()
             const path = "./client/tmp"
             exec(`rm -rf ${path}/*`, _ => {
                 youtubeDlWrap.exec([url, "-o", `${path}/video`])
@@ -47,9 +48,9 @@ class Video {
                     console.log(progress);
                 })
                 .on("close", () => {
-                    exec(`mv ${path}/* ${path}/video`, _ => {
-                        resolve()
-                        console.log("done");
+                    exec(`mv ${path}/* ${path}/${fileName}`, _ => {
+                        console.log("done")
+                        resolve(fileName)
                     })
                 })
             })
