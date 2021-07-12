@@ -22,7 +22,7 @@ client.on('message', msg => {
         
         switch (command) {
             case 'p':
-                if (stream.in_progress && allowed(msg)) {
+                if (stream.in_progress && notAllowed(msg)) {
                     msg.reply("Another session is already in progress")
                     return
                 }
