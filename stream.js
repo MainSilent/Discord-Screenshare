@@ -147,6 +147,7 @@ class Stream extends Video {
     }
 
     stop() {
+        console.log("Stop")
         this.driver.get(this.client_url)
         // this.driver.close()
         // this.driver.quit()
