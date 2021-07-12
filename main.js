@@ -2,6 +2,8 @@ require('dotenv').config()
 const { Stream } = require('./stream')
 const Discord = require('discord.js')
 
+const reject = '❌'
+const accept = '✅'
 const prefix = '*'
 const client = new Discord.Client()
 const token = process.env.token
