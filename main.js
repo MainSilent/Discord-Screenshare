@@ -26,6 +26,13 @@ client.on('message', msg => {
             case 'pause':
                 stream.pause()
                 break;
+            case 'duration':
+                msg.channel.send(stream.duration)
+                break;
+            case 'current':
+                if (content[1])
+                    stream.current(content[1])
+                break;
             case 'stop':
                 stream.stop()
                 break;
