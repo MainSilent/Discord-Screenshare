@@ -40,9 +40,9 @@ client.on('message', msg => {
                 url = content[1]
                 // not safe...
                 if (url.includes('youtube.com') || url.includes('xnxx.com'))
-                    stream.load(url, true)
+                    stream.load(url, true, msg)
                 else
-                    stream.load(url)
+                    stream.load(url, false, msg)
                 break;
             case 'play':
                 notAllowed(msg) ?
