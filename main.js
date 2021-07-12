@@ -5,7 +5,7 @@ const Discord = require('discord.js')
 const prefix = '*'
 const client = new Discord.Client()
 const token = process.env.token
-let stream = new Stream(token)
+let stream = new Stream(token, false)
 
 client.on('ready', () => console.log("Bot started"))
 

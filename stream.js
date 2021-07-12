@@ -75,9 +75,10 @@ class Video {
 }
 
 class Stream extends Video {
+    client_url = `file://${__dirname}/client/index.html`
+
     constructor(token, headless=true) {
         super()
-        const client_url = `file://${__dirname}/client/index.html`
         const chrome_options = new chrome.Options()
         headless && chrome_options.addArguments('--headless')
         chrome_options.addArguments('--no-sandbox')
@@ -89,7 +90,7 @@ class Stream extends Video {
         chrome_options.addArguments('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36')
         console.log("Webdriver started")
         this.driver = new webdriver.Builder().forBrowser('chrome').setChromeOptions(chrome_options).build()
-        this.driver.get(client_url)
+        this.driver.get(this.client_url)
         this.driver.executeScript(`localStorage.setItem("token", '"${token}"')`)
     }
 
@@ -146,8 +147,7 @@ class Stream extends Video {
     }
 
     stop() {
-        this.driver.executeScript(`document.querySelector('[aria-label="Disconnect"]').click()`)
-            .catch(e => e)
+        this.driver.get(this.client_url)
         // this.driver.close()
         // this.driver.quit()
     }
