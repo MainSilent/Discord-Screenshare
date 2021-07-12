@@ -18,7 +18,7 @@ client.on('ready', () => console.log("Bot started"))
 client.on('message', msg => {
     if (msg.content.startsWith(prefix)) {
         content = msg.content.split(" ")
-        command = content[0].split('*')[1]
+        command = content[0].split(prefix)[1]
         
         switch (command) {
             case 'p':
