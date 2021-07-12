@@ -71,8 +71,12 @@ client.on('message', msg => {
                     })
                 break;
             case 'stop':
-                stream.stop()
-                stream.in_progress = false
+                if (notAllowed(msg)) 
+                    msg.react(reject)
+                else {
+                    stream.stop()
+                    stream.in_progress = false
+                }
                 break;
         }
     }
