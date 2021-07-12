@@ -39,14 +39,16 @@ client.on('message', msg => {
                 stream.channel_id = voice_channel.id
                 url = content[1]
 
-                msg.channel.send("Please wait...")
-                    .then(msg => {
-                        // not safe...
-                        if (url.includes('youtube.com') || url.includes('xnxx.com') || url.includes('xvideos.com'))
-                            stream.load(url, true, msg)
-                        else
-                            stream.load(url, false, msg)
-                    })
+                !stream.in_loading ? 
+                    msg.channel.send("Please wait...")
+                        .then(msg => {
+                            // not safe...
+                            if (url.includes('youtube.com') || url.includes('xnxx.com') || url.includes('xvideos.com'))
+                                stream.load(url, true, msg)
+                            else
+                                stream.load(url, false, msg)
+                        }) :
+                    msg.reply(reject)
                 break;
             case 'play':
                 notAllowed(msg) ?

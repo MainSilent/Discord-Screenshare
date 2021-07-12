@@ -6,6 +6,9 @@ const youtubeDlWrap = new YoutubeDlWrap()
 
 class Video {
     async load(url, youtube_dl, msg) {
+        if (this.in_loading) return
+        this.in_loading = true
+
 		if (youtube_dl) {
             await msg.edit("Downloading...")
                 .then(async msg => {
@@ -28,6 +31,7 @@ class Video {
                                         this.join()
                                         this.start()
                                         clearInterval(int)
+                                        this.in_loading = false
                                         msg.edit("Done, Type `*play` to start playing.")
                                     }
                                 })
