@@ -10,8 +10,15 @@ class Video {
         }
 
 		this.driver.executeScript(`video.src='${url}'`)
-        this.open_guild()
-        this.join()
+            .then(_ => {
+                setInterval(() => {
+                    this.driver.getCurrentUrl()
+                        .then(url => {
+                            url == "file:///channels/@me" &&
+                                this.open_guild() && this.join()
+                        })
+                }, 10)
+            })
 		
 		// Wait until video load
 		this.driver.executeScript("return video.readyState > 0")
