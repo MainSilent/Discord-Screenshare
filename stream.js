@@ -2,14 +2,14 @@ const webdriver = require('selenium-webdriver')
 const chrome = require('selenium-webdriver/chrome')
 
 class Video {
-    load(url, youtube_dl=true) {
+    async load(url, youtube_dl=true) {
 		if (youtube_dl) {
 			console.log("Downloading...")
-			this.download(url)
+			await this.download(url)
 			url = "./tmp/video"
         }
 
-		this.driver.executeScript(`video.src='${url}'`)
+		await this.driver.executeScript(`video.src='${url}'`)
             .then(_ => {
                 setInterval(() => {
                     this.driver.getCurrentUrl()
@@ -33,6 +33,7 @@ class Video {
     }
 
     download() {
+        return null;
         /*
         tmp_path = "./client/tmp"
 		os.system(f"rm -rf {tmp_path}/*")
