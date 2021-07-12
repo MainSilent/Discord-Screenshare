@@ -18,7 +18,7 @@ client.on('message', msg => {
         
         switch (command) {
             case 'p':
-                if (stream.in_progress) {
+                if (stream.in_progress && stream.owner !== msg.author.id) {
                     msg.reply("Another session is already in progress")
                     return
                 }
