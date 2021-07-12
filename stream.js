@@ -8,7 +8,7 @@ class Video {
     async load(url, youtube_dl, msg) {
 		if (youtube_dl) {
 			console.log("Downloading...")
-			const fileName = await this.download(url)
+			const fileName = await this.download(url, msg)
 			url = __dirname + "/client/tmp/" + fileName
         }
 
@@ -40,7 +40,7 @@ class Video {
         }, 10)
     }
 
-    download(url) {
+    download(url, msg) {
         return new Promise((resolve, reject) => {
             const fileName = Date.now()
             const path = "./client/tmp"
