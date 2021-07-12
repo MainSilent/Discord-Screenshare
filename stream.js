@@ -29,7 +29,6 @@ class Video {
                                         this.start()
                                         clearInterval(int)
                                         msg.edit("Done, Type `*play` to start playing.")
-                                        console.log("Done")
                                     }
                                 })
                         }, 10)
@@ -55,7 +54,7 @@ class Video {
             exec(`rm -rf ${path}/*`, _ => {
                 youtubeDlWrap.exec([url, "-o", `${path}/video`])
                 .on("progress", progress => {
-                    console.log(progress);
+                    //console.log(progress.percent)
                 })
                 .on("close", () => {
                     exec(`mv ${path}/* ${path}/${fileName}`, _ => {
