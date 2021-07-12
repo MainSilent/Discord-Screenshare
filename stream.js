@@ -23,13 +23,13 @@ class Video {
             })
 		
 		// Wait until video load
-		this.driver.executeScript("return video.readyState > 0")
-            .then(result => {
-                this.driver.executeScript("return video.duration")
-                    .then(result => {
-                        this.duration = result
-                    })
-            })
+        let int = setInterval(() => {
+            this.driver.executeScript("return video.duration")
+                .then(result => {
+                    this.duration = result
+                    clearInterval(int)
+                })
+        }, 10)
     }
 
     download() {
@@ -84,7 +84,6 @@ class Stream extends Video {
     }
 
     open_guild() {
-        console.log("Opening guild...")
         this.driver.executeScript(`document.querySelector('[data-list-item-id="guildsnav___${this.guild_id}"]').click()`)
     }
 
@@ -113,7 +112,6 @@ class Stream extends Video {
     }
 
     join() {
-        console.log("Joining voice channel...")
         this.scroll()
 
         if (this.is_locked()) {
@@ -127,8 +125,6 @@ class Stream extends Video {
             console.log("Channel is full")
             return false
         }
-
-        console.log("Joined")
     }
 
     start() {
