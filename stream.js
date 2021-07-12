@@ -33,7 +33,7 @@ class Video {
             this.driver.executeScript("return video.duration")
                 .then(result => {
                     this.duration = result
-                    clearInterval(int)
+                    result && clearInterval(int)
                 })
         }, 10)
     }

@@ -27,14 +27,20 @@ client.on('message', msg => {
                 stream.pause()
                 break;
             case 'duration':
-                msg.channel.send(stream.duration)
+                if (stream.duration)
+                    msg.channel.send(stream.duration)
+                else
+                    msg.reply("N/A, try again later")
                 break;
             case 'current':
                 if (content[1])
                     stream.current(content[1])
                 else
                     stream.current().then(result => {
-                        msg.channel.send(result)
+                        if (result)
+                            msg.channel.send(result)
+                        else
+                            msg.reply("N/A, try again later")     
                     })
                 break;
             case 'stop':
