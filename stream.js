@@ -72,6 +72,7 @@ class Video {
     current(time=null) {
         if (time) {
             if (time[0] === '+' || time[0] === '-') {
+                let r
                 let c = this.current()
                 if (!c) return
                 c = parseInt(c)
