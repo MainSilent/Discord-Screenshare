@@ -45,7 +45,9 @@ client.on('message', msg => {
                     stream.load(url)
                 break;
             case 'play':
-                stream.play()
+                notAllowed(msg) ?
+                    msg.react(reject) :
+                    stream.play()
                 break;
             case 'pause':
                 stream.pause()
