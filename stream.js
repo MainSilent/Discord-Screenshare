@@ -5,7 +5,7 @@ const YoutubeDlWrap = require("youtube-dl-wrap")
 const youtubeDlWrap = new YoutubeDlWrap()
 
 class Video {
-    async load(url, youtube_dl=false) {
+    async load(url, youtube_dl, msg) {
 		if (youtube_dl) {
 			console.log("Downloading...")
 			const fileName = await this.download(url)
