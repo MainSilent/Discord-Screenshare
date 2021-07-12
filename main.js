@@ -69,6 +69,7 @@ client.on('message', msg => {
                 break;
             case 'stop':
                 stream.stop()
+                stream.in_progress = false
                 break;
         }
     }
