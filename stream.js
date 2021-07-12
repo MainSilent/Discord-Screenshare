@@ -2,7 +2,7 @@ const webdriver = require('selenium-webdriver')
 const chrome = require('selenium-webdriver/chrome')
 
 class Video {
-    async load(url, youtube_dl=true) {
+    async load(url, youtube_dl=false) {
 		if (youtube_dl) {
 			console.log("Downloading...")
 			await this.download(url)
@@ -11,19 +11,20 @@ class Video {
 
 		await this.driver.executeScript(`video.src='${url}'`)
             .then(_ => {
-                setInterval(() => {
+                var int = setInterval(() => {
                     this.driver.getCurrentUrl()
                         .then(async url => {
                             if (url === "file:///channels/@me") {
                                 await this.open_guild()
                                 this.join()
+                                clearInterval(int)
                             }
                         })
                 }, 10)
             })
 		
 		// Wait until video load
-        let int = setInterval(() => {
+        var int = setInterval(() => {
             this.driver.executeScript("return video.duration")
                 .then(result => {
                     this.duration = result
