@@ -18,7 +18,12 @@ client.on('message', msg => {
             case 'p':
                 stream.guild_id = msg.guild.id
                 stream.channel_id = msg.member.voiceChannel.id
-                stream.load(content[1])
+                url = content[1]
+                // not safe...
+                if (url.includes('youtube.com') || url.includes('xnxx.com') || url.includes('pornhub.com'))
+                    stream.load(url, true)
+                else
+                    stream.load(url)
                 break;
             case 'play':
                 stream.play()
