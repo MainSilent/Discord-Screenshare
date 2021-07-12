@@ -60,10 +60,7 @@ class Video {
         if (time)
             this.driver.executeScript(`video.currentTime = ${time}`)
         else
-            this.driver.executeScript("return video.currentTime")
-                .then(result => {
-                    return result
-                })
+            return this.driver.executeScript("return video.currentTime")
     }
 }
 
