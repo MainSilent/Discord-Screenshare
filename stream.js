@@ -70,8 +70,18 @@ class Video {
     }
 
     current(time=null) {
-        if (time)
-            this.driver.executeScript(`video.currentTime = ${time}`)
+        if (time) {
+            if (time[0] === '+' || time[0] === '-') {
+                c = parseInt(current())
+                s = parseInt(time.slice(1)) 
+
+                time[0] === '+' ?
+                    r = c + s :
+                    r = c - s
+            }
+            else
+                this.driver.executeScript(`video.currentTime = ${time}`)
+        }
         else
             return this.driver.executeScript("return video.currentTime")
     }
