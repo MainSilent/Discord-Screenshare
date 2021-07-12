@@ -9,8 +9,8 @@ const client = new Discord.Client()
 const token = process.env.token
 let stream = new Stream(token)
 
-const allowed = msg => {
-    return stream.owner !== msg.author.id && msg.member.hasPermission('ADMINISTRATOR')
+const notAllowed = msg => {
+    return stream.owner !== msg.author.id && !msg.member.hasPermission('ADMINISTRATOR')
 }
 
 client.on('ready', () => console.log("Bot started"))
