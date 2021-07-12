@@ -1,5 +1,3 @@
-new YouTubeToHtml5();
-
 var stream_inject
 const js_files = ["a9a865842245be0e7de5.min", "90e93d3781d72d14280d", "e226cd8c7bda9532f751", "57c4676fe004fd600130"]
 
