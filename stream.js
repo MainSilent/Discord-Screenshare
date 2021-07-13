@@ -59,6 +59,7 @@ class Video {
                     if (error_msg) {
                         msg.edit(error_msg)
                         this.in_loading = false
+                        this.driver.executeScript('video_error = ""')
                         clearInterval(int)
                         return
                     }
