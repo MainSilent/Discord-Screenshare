@@ -60,6 +60,12 @@ class Video {
                 .on("progress", progress => {
                     //console.log(progress.percent)
                 })
+                .on("error", err => {
+                    msg.edit(err.message)
+                        .then(_ => {
+                            this.in_loading = false
+                        })
+                })
                 .on("close", () => {
                     exec(`mv ${path}/* ${path}/${fileName}`, _ => {
                         resolve(fileName)
