@@ -94,6 +94,13 @@ client.on('message', msg => {
                     stream.in_progress = false
                 }
                 break;
+            case 'help':
+                msg.channel.send({
+                    embed: {
+                        title: 'Commands'
+                    }
+                })
+                break;
             default:
                 msg.reply("Unknown command, type `*help` for list of commands")
         }
