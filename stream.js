@@ -28,12 +28,14 @@ class Video {
 
                             this.driver.getCurrentUrl()
                                 .then(url => {
-                                    if (url === "file:///channels/@me") {
+                                    if (!this.init && url === "file:///channels/@me") {
+                                        this.init = true
                                         this.open_guild()
                                         this.join()
-                                        this.start()
                                         clearInterval(int1)
-                                    }
+                                    } 
+                                    else if(this.init)
+                                        clearInterval(int1)
                                 })
                         }, 10)
                     })
@@ -101,6 +103,7 @@ class Video {
 
     play() {
         console.log("Play")
+        this.start()
         this.driver.executeScript('video.play()')
     }
 
@@ -213,6 +216,7 @@ class Stream extends Video {
 
     stop() {
         console.log("Stop")
+        this.init = false
         this.driver.get(this.client_url)
     }
 }
