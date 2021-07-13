@@ -23,14 +23,14 @@ class Video {
                 console.log('Loading...')
                 msg.edit("Loading...")
                     .then(_ => {
-                        var int = setInterval(() => {
+                        var int1 = setInterval(() => {
                             this.driver.getCurrentUrl()
                                 .then(url => {
                                     if (url === "file:///channels/@me") {
                                         this.open_guild()
                                         this.join()
                                         this.start()
-                                        clearInterval(int)
+                                        clearInterval(int1)
                                     }
                                 })
                         }, 10)
@@ -39,7 +39,7 @@ class Video {
 		
 		// Wait until video load
         let is_load
-        var int = setInterval(() => {
+        var int2 = setInterval(() => {
             this.driver.executeScript("return video.duration")
                 .then(result => {
                     if (result) {
@@ -47,24 +47,24 @@ class Video {
                         this.duration = result
                         this.in_loading = false
                         msg.edit("Done, Type `*play` to start playing.")
-                        clearInterval(int)
+                        clearInterval(int2)
                     }
                 })
         }, 10)
 
         // Error event
-        var int = setInterval(() => {
+        var int3 = setInterval(() => {
             this.driver.executeScript('return video_error')
                 .then(error_msg => {
                     if (error_msg) {
                         msg.edit(error_msg)
                         this.in_loading = false
                         this.driver.executeScript('video_error = ""')
-                        clearInterval(int)
+                        clearInterval(int3)
                         return
                     }
                     else if (is_load)
-                        clearInterval(int)
+                        clearInterval(int3)
                 })
         }, 10)
     }
