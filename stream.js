@@ -62,7 +62,7 @@ class Video {
             this.driver.executeScript('return video_error')
                 .then(error_msg => {
                     if (error_msg) {
-                        msg.edit(error_msg)
+                        msg.edit(":no_entry_sign: " + error_msg)
                         is_error = true
                         this.in_loading = false
                         this.driver.executeScript('video_error = ""')
@@ -85,7 +85,7 @@ class Video {
                     //console.log(progress.percent)
                 })
                 .on("error", err => {
-                    msg.edit(err.message)
+                    msg.edit(":no_entry_sign: " + err.message)
                         .then(_ => {
                             this.in_loading = false
                         })
