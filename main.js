@@ -56,7 +56,7 @@ client.on('message', msg => {
                     msg.channel.send("Please wait...")
                         .then(msg => {
                             // not safe...
-                            if (url.includes('youtube.com') || url.includes('xnxx.com') || url.includes('xvideos.com') || url.includes('xhamster.com') || url.includes('instagram.com'))
+                            if (url.includes('youtube.com') || url.includes('xnxx.com') || url.includes('xvideos.com') || url.includes('xhamster.com'))
                                 stream.load(url, true, msg)
                             else
                                 stream.load(url, false, msg)
@@ -105,7 +105,7 @@ client.on('message', msg => {
                         color: 0x03b2f8,
                         title: 'Commands',
                         description: `
-                            *p \`url\` | Youtube, Instagram, xnxx, xvideos, xhamster | direct link (without downloading)\n
+                            *p \`url\` | Youtube, xnxx, xvideos, xhamster | direct link (without downloading)\n
                             *play | Play video\n
                             *pause | Pause video\n
                             *duration | Show video duration\n
