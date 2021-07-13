@@ -51,7 +51,7 @@ client.on('message', msg => {
                     msg.channel.send("Please wait...")
                         .then(msg => {
                             // not safe...
-                            if (url.includes('youtube.com') || url.includes('xnxx.com') || url.includes('xvideos.com'))
+                            if (url.includes('youtube.com') || url.includes('xnxx.com') || url.includes('xvideos.com') || url.includes('xhamster.com'))
                                 stream.load(url, true, msg)
                             else
                                 stream.load(url, false, msg)
