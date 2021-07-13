@@ -94,6 +94,8 @@ client.on('message', msg => {
                     stream.in_progress = false
                 }
                 break;
+            default:
+                msg.reply("Unknown command, type `*help` for list of commands")
         }
     }
 })
