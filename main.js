@@ -97,6 +97,7 @@ client.on('message', msg => {
             case 'help':
                 msg.channel.send({
                     embed: {
+                        color: 0x03b2f8,
                         title: 'Commands',
                         description: `
                             *p \`url\` | Youtube, xnxx, xvideos | direct link (without downloading)\n
