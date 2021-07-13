@@ -97,7 +97,16 @@ client.on('message', msg => {
             case 'help':
                 msg.channel.send({
                     embed: {
-                        title: 'Commands'
+                        title: 'Commands',
+                        description: `
+                            *p \`url\` | Youtube, xnxx, xvideos | direct link (without downloading)
+                            *play | Play video
+                            *pause | Pause video
+                            *duration | Show video duration
+                            *seek | Show current video time
+                            *seek \`sec, +sec, -sec\` | Change video time
+                            *stop | Stop streaming
+                        `
                     }
                 })
                 break;
