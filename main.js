@@ -73,7 +73,7 @@ client.on('message', msg => {
                     msg.channel.send(stream.hms(stream.duration)) :
                     msg.reply("N/A, try again later")
                 break;
-            case 'current':
+            case 'seek':
                 if (content[1])
                     notAllowed(msg) ?
                         msg.react(reject) :
