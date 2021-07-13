@@ -207,7 +207,7 @@ class Stream extends Video {
             //     this.stop()
             //     clearInterval(intJoin)
             // }
-        }, 100)
+        }, 10)
     }
 
     start() {
