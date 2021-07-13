@@ -99,12 +99,12 @@ client.on('message', msg => {
                     embed: {
                         title: 'Commands',
                         description: `
-                            *p \`url\` | Youtube, xnxx, xvideos | direct link (without downloading)
-                            *play | Play video
-                            *pause | Pause video
-                            *duration | Show video duration
-                            *seek | Show current video time
-                            *seek \`sec, +sec, -sec\` | Change video time
+                            *p \`url\` | Youtube, xnxx, xvideos | direct link (without downloading)\n
+                            *play | Play video\n
+                            *pause | Pause video\n
+                            *duration | Show video duration\n
+                            *seek | Show current video time\n
+                            *seek \`sec, +sec, -sec\` | Change video time\n
                             *stop | Stop streaming
                         `
                     }
