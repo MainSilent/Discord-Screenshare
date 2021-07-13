@@ -58,6 +58,7 @@ class Video {
                 .then(error_msg => {
                     if (error_msg) {
                         msg.edit(error_msg)
+                        this.in_loading = false
                         clearInterval(int)
                         return
                     }
