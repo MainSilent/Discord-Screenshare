@@ -44,7 +44,6 @@ class Video {
         var int2 = setInterval(() => {
             this.driver.executeScript("return video.duration")
                 .then(result => {
-                    console.log(result)
                     if (result) {
                         is_load = true
                         this.duration = result
