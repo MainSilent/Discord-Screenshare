@@ -8,6 +8,7 @@ function loadJs(filename) {
     document.getElementsByTagName("head")[0].appendChild(file)
 }
 
+let video_error = ""
 const video = document.createElement('video')
 const canvas = document.createElement('canvas')
 const ctx = canvas.getContext('2d')
@@ -42,4 +43,8 @@ video.onplay = () => {
         requestAnimationFrame(step)
     }
     requestAnimationFrame(step);
+}
+
+video.onerror = event => {
+    video_error = event.target.error.message
 }
