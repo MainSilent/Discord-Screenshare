@@ -38,15 +38,31 @@ class Video {
             })
 		
 		// Wait until video load
+        let is_load
         var int = setInterval(() => {
             this.driver.executeScript("return video.duration")
                 .then(result => {
                     if (result) {
+                        is_load = true
                         this.duration = result
                         this.in_loading = false
                         msg.edit("Done, Type `*play` to start playing.")
                         clearInterval(int)
                     }
+                })
+        }, 10)
+
+        // Error event
+        var int = setInterval(() => {
+            this.driver.executeScript('return video_error')
+                .then(error_msg => {
+                    if (error_msg) {
+                        msg.edit(error_msg)
+                        clearInterval(int)
+                        return
+                    }
+                    else if (is_load)
+                        clearInterval(int)
                 })
         }, 10)
     }
