@@ -39,6 +39,14 @@ client.on('message', msg => {
                 stream.channel_id = voice_channel.id
                 url = content[1]
 
+                // Validate url scheme
+                const expression = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+                const regex = new RegExp(expression)
+                if (!url.match(regex)) {
+                    msg.react(reject)
+                    return
+                }
+
                 !stream.in_loading ? 
                     msg.channel.send("Please wait...")
                         .then(msg => {
