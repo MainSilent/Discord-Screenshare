@@ -105,7 +105,7 @@ client.on('message', msg => {
                         color: 0x03b2f8,
                         title: 'Commands',
                         description: `
-                            *p \`url\` | Youtube, xnxx, xvideos | direct link (without downloading)\n
+                            *p \`url\` | Youtube, Instagram, xnxx, xvideos, xhamster | direct link (without downloading)\n
                             *play | Play video\n
                             *pause | Pause video\n
                             *duration | Show video duration\n
