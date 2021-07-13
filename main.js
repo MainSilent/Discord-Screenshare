@@ -38,7 +38,12 @@ client.on('message', msg => {
                 stream.guild_id = msg.guild.id
                 stream.channel_id = voice_channel.id
                 url = content[1]
-
+                
+                if(!url) {
+                    msg.reply("Unknown command, type `*help` for list of commands")
+                    return
+                }
+                    
                 // Validate url scheme
                 const expression = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
                 const regex = new RegExp(expression)
