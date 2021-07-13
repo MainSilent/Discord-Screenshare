@@ -31,7 +31,7 @@ class Video {
                                     if (!this.init && url === "file:///channels/@me") {
                                         this.init = true
                                         this.open_guild()
-                                        this.join()
+                                        this.join(msg)
                                         clearInterval(int1)
                                     } 
                                     else if(this.init)
@@ -190,20 +190,24 @@ class Stream extends Video {
         `)
     }
 
-    join() {
-        this.scroll()
-
-        if (this.is_locked()) {
-            console.log("Channel is locked")
-            return false
-        }
-
-        this.driver.executeScript(`document.querySelector("[data-list-item-id='channels___${this.channel_id}']").click()`)
-
-        if (this.is_full()) {
-            console.log("Channel is full")
-            return false
-        }
+    join(msg) {
+        var intJoin = setInterval(() => {
+            // if (this.is_locked()) {
+            //     msg.reply("Channel is locked")
+            //     this.stop()
+            //     clearInterval(intJoin)
+            // }
+    
+            this.driver.executeScript(`document.querySelector("[data-list-item-id='channels___${this.channel_id}']").click()`)
+                .then(() => clearInterval(intJoin))
+                .catch(() => this.scroll())
+            
+            // if (this.is_full()) {
+            //     msg.reply("Channel is full")
+            //     this.stop()
+            //     clearInterval(intJoin)
+            // }
+        }, 100)
     }
 
     start() {
