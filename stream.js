@@ -52,6 +52,8 @@ class Video {
                         msg.edit("Done, Type `*play` to start playing.")
                         clearInterval(int2)
                     }
+                    else if (is_error)
+                        clearInterval(int2)
                 })
         }, 10)
 
