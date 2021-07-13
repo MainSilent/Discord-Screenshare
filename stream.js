@@ -24,6 +24,8 @@ class Video {
                 msg.edit("Loading...")
                     .then(_ => {
                         var int1 = setInterval(() => {
+                            is_error && clearInterval(int1)
+
                             this.driver.getCurrentUrl()
                                 .then(url => {
                                     if (url === "file:///channels/@me") {
@@ -42,6 +44,7 @@ class Video {
         var int2 = setInterval(() => {
             this.driver.executeScript("return video.duration")
                 .then(result => {
+                    console.log(result)
                     if (result) {
                         is_load = true
                         this.duration = result
@@ -53,11 +56,13 @@ class Video {
         }, 10)
 
         // Error event
+        let is_error
         var int3 = setInterval(() => {
             this.driver.executeScript('return video_error')
                 .then(error_msg => {
                     if (error_msg) {
                         msg.edit(error_msg)
+                        is_error = true
                         this.in_loading = false
                         this.driver.executeScript('video_error = ""')
                         clearInterval(int3)
