@@ -37,7 +37,7 @@ client.on('message', msg => {
                 stream.owner = msg.author.id
                 stream.guild_id = msg.guild.id
                 stream.channel_id = voice_channel.id
-                url = content[1]
+                url = content[content.length - 1]
                 
                 if(!url) {
                     msg.reply("Unknown command, type `*help` for list of commands")
