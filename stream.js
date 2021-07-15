@@ -217,7 +217,7 @@ class Stream extends Video {
 
                     clearInterval(intJoin)
                 })
-                .catch(this.scroll)
+                .catch(() => this.scroll())
         }, 10)
     }
 
