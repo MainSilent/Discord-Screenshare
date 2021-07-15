@@ -167,17 +167,15 @@ class Stream extends Video {
     }
 
     is_full() {
-        this.driver.executeScript(`return document.querySelector("[data-list-item-id='channels___${this.channel_id}']").innerHTML.includes("Voice (Locked)")`)
-            .then(result => {
-                return result
-            })
+        return this.driver.executeScript(`
+            return document.querySelector("[aria-label='Channel is full']")
+        `)
     }
 
     is_locked() {
-        this.driver.executeScript(`return document.querySelector("[data-list-item-id='channels___${this.channel_id}']").innerHTML.includes("Voice (Locked)")`)
-            .then(result => {
-                return result
-            })
+        return this.driver.executeScript(`
+            return document.querySelector("[data-list-item-id='channels___${this.channel_id}']").innerHTML.includes("Voice (Locked)")
+        `)
     }
 
     scroll() {
@@ -192,21 +190,27 @@ class Stream extends Video {
 
     join(msg) {
         var intJoin = setInterval(() => {
-            // if (this.is_locked()) {
-            //     msg.reply("Channel is locked")
-            //     this.stop()
-            //     clearInterval(intJoin)
-            // }
-    
             this.driver.executeScript(`document.querySelector("[data-list-item-id='channels___${this.channel_id}']").click()`)
-                .then(() => clearInterval(intJoin))
-                .catch(() => this.scroll())
-            
-            // if (this.is_full()) {
-            //     msg.reply("Channel is full")
-            //     this.stop()
-            //     clearInterval(intJoin)
-            // }
+                .then(() => {
+                    this.is_locked()
+                        .then(result => {
+                            if (result) {
+                                msg.channel.send(":no_entry_sign: Channel is locked")
+                                return
+                            }
+                        })
+   
+                    this.is_full()
+                        .then(result => {
+                            if (result) {
+                                msg.channel.send(":no_entry_sign: Channel is full")
+                                return
+                            }
+                        })
+
+                    clearInterval(intJoin)
+                })
+                .catch(this.scroll)
         }, 10)
     }
 
