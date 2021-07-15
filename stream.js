@@ -104,7 +104,7 @@ class Video {
 
     set_subtitle(url) {
         this.driver.executeScript(`
-            video.appendChild('<track src="${url}"/>')
+            video.innerHTML = '<track src="${url}"/>'
         `)
     }
 
