@@ -65,7 +65,7 @@ client.on('message', msg => {
 
                 notAllowed(msg) ?
                     msg.react(reject) :
-                    stream.sub(url)
+                    stream.set_subtitle(url)
                 break; 
             case 'play':
                 notAllowed(msg) ?
@@ -110,6 +110,7 @@ client.on('message', msg => {
                         title: 'Commands',
                         description: `
                             *p \`url\` | Youtube, xnxx, xvideos, xhamster | direct link (without downloading)\n
+                            *sub \`url\` | *.srt, *.vtt | set video subtitle
                             *play | Play video\n
                             *pause | Pause video\n
                             *duration | Show video duration\n

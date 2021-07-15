@@ -102,7 +102,7 @@ class Video {
     }
 
     set_subtitle(url) {
-
+        console.log(url);
     }
 
     play() {
