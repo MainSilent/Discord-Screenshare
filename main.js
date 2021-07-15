@@ -8,6 +8,8 @@ const prefix = '*'
 const client = new Discord.Client()
 const token = process.env.token
 let stream = new Stream(token)
+const url_expression = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+const url_regex = new RegExp(url_expression)
 
 const notAllowed = msg => {
     return stream.owner !== msg.author.id && !msg.member.hasPermission('ADMINISTRATOR')
@@ -38,16 +40,7 @@ client.on('message', msg => {
                 stream.guild_id = msg.guild.id
                 stream.channel_id = voice_channel.id
                 url = content[content.length - 1]
-                
-                if(!url) {
-                    msg.reply("Unknown command, type `*help` for list of commands")
-                    return
-                }
-                    
-                // Validate url scheme
-                const expression = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
-                const regex = new RegExp(expression)
-                if (!url.match(regex)) {
+                if(!url || !url.match(url_regex)) {
                     msg.react(reject)
                     return
                 }
@@ -65,16 +58,7 @@ client.on('message', msg => {
                 break;
             case 'sub':
                 url = content[content.length - 1]
-                
-                if(!url) {
-                    msg.reply("Unknown command, type `*help` for list of commands")
-                    return
-                }
-                    
-                // Validate url scheme
-                const expression = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
-                const regex = new RegExp(expression)
-                if (!url.match(regex)) {
+                if(!url || !url.match(url_regex)) {
                     msg.react(reject)
                     return
                 }
