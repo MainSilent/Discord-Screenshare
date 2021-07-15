@@ -192,21 +192,21 @@ class Stream extends Video {
         var intJoin = setInterval(() => {
             this.driver.executeScript(`document.querySelector("[data-list-item-id='channels___${this.channel_id}']").click()`)
                 .then(() => {
-                    this.is_locked()
-                        .then(result => {
-                            if (result) {
-                                msg.channel.send(":no_entry_sign: Channel is locked")
-                                return
-                            }
-                        })
+                    // this.is_locked()
+                    //     .then(result => {
+                    //         if (result) {
+                    //             msg.channel.send(":no_entry_sign: Channel is locked")
+                    //             return
+                    //         }
+                    //     })
    
-                    this.is_full()
-                        .then(result => {
-                            if (result) {
-                                msg.channel.send(":no_entry_sign: Channel is full")
-                                return
-                            }
-                        })
+                    // this.is_full()
+                    //     .then(result => {
+                    //         if (result) {
+                    //             msg.channel.send(":no_entry_sign: Channel is full")
+                    //             return
+                    //         }
+                    //     })
 
                     clearInterval(intJoin)
                 })
