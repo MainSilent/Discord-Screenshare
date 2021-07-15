@@ -8,6 +8,7 @@ class Video {
     async load(url, youtube_dl, msg) {
         if (this.in_loading) return
         this.in_loading = true
+        this.driver.executeScript('video.innerHTML = null')
 
 		if (youtube_dl) {
             await msg.edit("Downloading...")
@@ -102,7 +103,9 @@ class Video {
     }
 
     set_subtitle(url) {
-        console.log(url);
+        this.driver.executeScript(`
+            video.appendChild('<track src="${url}"/>')
+        `)
     }
 
     play() {
