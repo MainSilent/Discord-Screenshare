@@ -56,17 +56,17 @@ client.on('message', msg => {
                         }) :
                     msg.reply("Another video loading is already in progress, Try again later.")
                 break;
-            case 'sub':
-                url = content[content.length - 1]
-                if(!url || !url.match(url_regex)) {
-                    msg.react(reject)
-                    return
-                }
+            // case 'sub':
+            //     url = content[content.length - 1]
+            //     if(!url || !url.match(url_regex)) {
+            //         msg.react(reject)
+            //         return
+            //     }
 
-                notAllowed(msg) ?
-                    msg.react(reject) :
-                    stream.set_subtitle(url)
-                break; 
+            //     notAllowed(msg) ?
+            //         msg.react(reject) :
+            //         stream.set_subtitle(url)
+            //     break; 
             case 'play':
                 notAllowed(msg) ?
                     msg.react(reject) :
@@ -110,7 +110,6 @@ client.on('message', msg => {
                         title: 'Commands',
                         description: `
                             *p \`url\` | Youtube, xnxx, xvideos, xhamster | direct link (without downloading)\n
-                            *sub \`url\` | *.srt, *.vtt | set video subtitle
                             *play | Play video\n
                             *pause | Pause video\n
                             *duration | Show video duration\n
