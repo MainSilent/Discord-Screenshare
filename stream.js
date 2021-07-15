@@ -101,6 +101,10 @@ class Video {
         })
     }
 
+    set_subtitle(url) {
+
+    }
+
     play() {
         console.log("Play")
         this.start()

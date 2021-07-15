@@ -63,6 +63,26 @@ client.on('message', msg => {
                         }) :
                     msg.reply("Another video loading is already in progress, Try again later.")
                 break;
+            case 'sub':
+                url = content[content.length - 1]
+                
+                if(!url) {
+                    msg.reply("Unknown command, type `*help` for list of commands")
+                    return
+                }
+                    
+                // Validate url scheme
+                const expression = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+                const regex = new RegExp(expression)
+                if (!url.match(regex)) {
+                    msg.react(reject)
+                    return
+                }
+
+                notAllowed(msg) ?
+                    msg.react(reject) :
+                    stream.sub(url)
+                break; 
             case 'play':
                 notAllowed(msg) ?
                     msg.react(reject) :
