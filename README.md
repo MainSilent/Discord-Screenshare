@@ -1,4 +1,4 @@
-# Demo
+## Discord Stream Bot
 
 It's headless and there is no need for GUI.
 
