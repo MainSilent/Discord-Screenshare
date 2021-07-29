@@ -3,6 +3,7 @@ const { Stream } = require('./stream')
 const Discord = require('discord.js')
 const { existsSync } = require('fs')
 const { execSync } = require("child_process")
+const users = require('./users.json')
 
 let intLoop = null
 let loop = false
@@ -37,7 +38,9 @@ client.on('message', msg => {
     if (msg.content.startsWith(prefix)) {
         content = msg.content.split(" ")
         command = content[0].split(prefix)[1]
-        
+
+        if (!users.includes(msg.author.id) && msg.author.id != process.env.owner_id) return
+
         switch (command) {
             case 'p':
                 if (stream.in_progress && notAllowed(msg)) {
@@ -160,7 +163,7 @@ client.on('message', msg => {
                             *seek \`sec, +sec, -sec\` | Change video time\n
                             *loop | Toggle playing video on loop\n
                             *stop | Stop streaming\n
-                            *init 6 | Reboot the server
+                            *init6 | Reboot the server
                         `
                     }
                 })
