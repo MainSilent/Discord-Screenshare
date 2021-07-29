@@ -1,6 +1,7 @@
 require('dotenv').config()
 const { Stream } = require('./stream')
 const Discord = require('discord.js')
+const { existsSync } = require('fs')
 const { execSync } = require("child_process")
 
 let intLoop = null
@@ -18,7 +19,19 @@ const notAllowed = msg => {
     return stream.owner !== msg.author.id && !msg.member.hasPermission('ADMINISTRATOR')
 }
 
-client.on('ready', () => console.log("Bot started"))
+client.on('ready', () => {
+    console.log("Bot started")
+
+    try {
+        if (existsSync('lastChannel')) {
+            const lastChannel = execSync('cat lastChannel').toString()
+            if (lastChannel) {
+                client.channels.get(lastChannel).send("[>] BOT STARTED")
+                execSync('rm lastChannel')
+            }
+        }
+    } catch (e){}
+})
 
 client.on('message', msg => {
     if (msg.content.startsWith(prefix)) {
@@ -126,8 +139,12 @@ client.on('message', msg => {
                     stream.in_progress = false
                 }
                 break;
-            case '__init__ 6':
-                execSync('init 6')
+            case 'init6':
+                stream.stop()
+                msg.channel.send('Rebooting...').then(() => {
+                    execSync(`echo -n ${msg.channel.id} > lastChannel`)
+                    execSync('init 6')
+                })
                 break;
             case 'help':
                 msg.channel.send({
