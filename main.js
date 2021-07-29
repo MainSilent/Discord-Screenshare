@@ -2,6 +2,8 @@ require('dotenv').config()
 const { Stream } = require('./stream')
 const Discord = require('discord.js')
 
+let intLoop = null
+let loop = false
 const reject = '❌'
 const accept = '✅'
 const prefix = '*'
@@ -95,6 +97,26 @@ client.on('message', msg => {
                             msg.reply("N/A, try again later")     
                     })
                 break;
+            case 'loop':
+                if (notAllowed(msg))
+                    msg.react(reject)
+                else {
+                    if (!loop) {
+                        loop = true
+                        intLoop = setInterval(() => {
+                            stream.current().then(result => {
+                                if (result >= stream.duration)
+                                    stream.driver.executeScript('video.play()')
+                            })
+                        }, 100)
+                        msg.reply("Video loop set")
+                    } else {
+                        loop = false
+                        clearInterval(intLoop)
+                        msg.reply("Video loop unset")
+                    }
+                }
+                break;
             case 'stop':
                 if (notAllowed(msg) || stream.in_loading) 
                     msg.react(reject)
@@ -115,6 +137,7 @@ client.on('message', msg => {
                             *duration | Show video duration\n
                             *seek | Show current video time\n
                             *seek \`sec, +sec, -sec\` | Change video time\n
+                            *loop | Toggle playing video on loop\n
                             *stop | Stop streaming
                         `
                     }
