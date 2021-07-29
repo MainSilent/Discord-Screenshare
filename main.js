@@ -41,6 +41,17 @@ client.on('message', msg => {
 
         if (!users.includes(msg.author.id) && msg.author.id != process.env.owner_id) return
 
+        process.env.log_channel_id &&
+            msg.channel.send({
+                embed: {
+                    title: 'Log',
+                    description: msg.content,
+                    footer: {
+                        text: `${msg.author.username} | ${msg.author.id}` 
+                    }
+                }
+            })
+
         switch (command) {
             case 'p':
                 if (stream.in_progress && notAllowed(msg)) {
