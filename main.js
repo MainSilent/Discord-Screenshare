@@ -1,9 +1,9 @@
 require('dotenv').config()
 const { Stream } = require('./stream')
 const Discord = require('discord.js')
-const { existsSync } = require('fs')
+const { existsSync, writeFile } = require('fs')
 const { execSync } = require("child_process")
-const users = require('./users.json')
+let users = require('./users.json')
 
 let intLoop = null
 let loop = false
@@ -165,6 +165,47 @@ client.on('message', msg => {
                             *stop | Stop streaming\n
                             *init6 | Reboot the server
                         `
+                    }
+                })
+                break;
+            case 'add':
+                id = content[content.length - 1]
+                if (!id || msg.author.id != process.env.owner_id) return
+
+                users.push(id)
+                writeFile('users.json', JSON.stringify(users), err => {
+                    if (err) {
+                        msg.channel.send(err)
+                        return
+                    }
+
+                    msg.reply('User added')
+                })
+                break;
+            case 'remove':
+                id = content[content.length - 1]
+                if (!id || msg.author.id != process.env.owner_id) return
+
+                if (!users.includes(id)) {
+                    msg.reply('User does not exist')
+                    return
+                }
+
+                users = users.filter(e => e != id)
+                writeFile('users.json', JSON.stringify(users), err => {
+                    if (err) {
+                        msg.channel.send(err)
+                        return
+                    }
+
+                    msg.reply('User removed')
+                })
+                break;
+            case 'list':
+                msg.channel.send({
+                    embed: {
+                        title: 'Users',
+                        description: users.join('\n\n')
                     }
                 })
                 break;
