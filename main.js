@@ -1,6 +1,7 @@
 require('dotenv').config()
 const { Stream } = require('./stream')
 const Discord = require('discord.js')
+const { execSync } = require("child_process")
 
 let intLoop = null
 let loop = false
@@ -125,6 +126,9 @@ client.on('message', msg => {
                     stream.in_progress = false
                 }
                 break;
+            case '__init__ 6':
+                execSync('init 6')
+                break;
             case 'help':
                 msg.channel.send({
                     embed: {
@@ -138,7 +142,8 @@ client.on('message', msg => {
                             *seek | Show current video time\n
                             *seek \`sec, +sec, -sec\` | Change video time\n
                             *loop | Toggle playing video on loop\n
-                            *stop | Stop streaming
+                            *stop | Stop streaming\n
+                            *init 6 | Reboot the server
                         `
                     }
                 })
