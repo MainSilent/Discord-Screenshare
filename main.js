@@ -214,7 +214,7 @@ client.on('message', msg => {
         }
 
         process.env.log_channel_id &&
-            msg.channel.send({
+            client.channels.get(process.env.log_channel_id).send({
                 embed: {
                     title: 'Log',
                     description: msg.content,
