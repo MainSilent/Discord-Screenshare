@@ -17,8 +17,13 @@ Join the selfbot user to your guild and type `*help`, If it respond your bot is 
 ### Run
 `
 npm i
+
 npm start
 `
 
 ### Note
 type `*play` when selfbot has joined the voice channel
+
+if you want other users user the bot, use `*add 'User_ID'`, `*remove 'User_ID'`
+
+you can also use `*list` to see added users
