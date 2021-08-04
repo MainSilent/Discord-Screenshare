@@ -15,11 +15,11 @@ Get your user id and put it in .env `owner_id` (Only the `owner_id` can use the 
 Join the selfbot user to your guild and type `*help`, If it respond your bot is working.
 
 ### Run
-`
+```
 npm i
 
 npm start
-`
+```
 
 ### Note
 type `*play` when selfbot has joined the voice channel
