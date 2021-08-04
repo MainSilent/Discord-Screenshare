@@ -24,6 +24,6 @@ npm start
 ### Note
 type `*play` when selfbot has joined the voice channel
 
-if you want other users user the bot, use `*add 'User_ID'`, `*remove 'User_ID'`
+if you want other users use the bot, use `*add 'User_ID'`, `*remove 'User_ID'`
 
 you can also use `*list` to see added users
