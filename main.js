@@ -16,7 +16,9 @@ const url_expression = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-
 const url_regex = new RegExp(url_expression)
 
 const notAllowed = msg => {
-    return stream.owner !== msg.author.id && !msg.member.hasPermission('ADMINISTRATOR')
+    return stream.owner !== msg.author.id &&
+           stream.owner !== process.env.owner_id &&
+           !msg.member.hasPermission('ADMINISTRATOR')
 }
 
 client.on('ready', () => {
@@ -113,11 +115,13 @@ client.on('message', msg => {
                 }
                 break;
             case 'stop':
-                if (notAllowed(msg) || stream.in_loading) 
+                if (notAllowed(msg)) 
                     msg.react(reject)
                 else {
+                    stream.download_process.kill()
                     stream.stop()
                     stream.in_progress = false
+                    msg.react(accept)
                 }
                 break;
             case 'help':

@@ -83,7 +83,7 @@ class Video {
             const fileName = Date.now()
             const path = "./client/tmp"
             exec(`rm -rf ${path}/*`, _ => {
-                youtubeDlWrap.exec([url, "-o", `${path}/video`])
+                this.download_process = youtubeDlWrap.exec([url, "-o", `${path}/video`])
                 .on("progress", progress => {
                     //console.log(progress.percent)
                 })
@@ -97,7 +97,7 @@ class Video {
                     exec(`mv ${path}/* ${path}/${fileName}`, _ => {
                         resolve(fileName)
                     })
-                })
+                }).youtubeDlProcess
             })
         })
     }
