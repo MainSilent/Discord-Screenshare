@@ -121,6 +121,7 @@ client.on('message', msg => {
                     stream.download_process.kill()
                     stream.stop()
                     stream.killed = true
+                    stream.in_loading = false
                     stream.in_progress = false
                     msg.react(accept)
                 }
