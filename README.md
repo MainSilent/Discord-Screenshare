@@ -5,7 +5,7 @@ It's headless and there is no need for GUI.
 Please make sure you have `youtube_dl` and `chromedriver` installed.
 
 ### [Video Sample](https://www.youtube.com/watch?v=HA18QDE5GhQ)
-![ScreenShot](https://raw.githubusercontent.com/MainSilent/DiscordStream/master/demo.png)
+![ScreenShot](https://raw.githubusercontent.com/MainSilent/Discord-Screenshare/master/demo.png)
 
 ### Setup
 Create a discord user, find the token and set it in .env `token`
