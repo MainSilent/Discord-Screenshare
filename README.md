@@ -2,15 +2,15 @@
 
 It's headless and there is no need for GUI.
 
-I rewrote it in JavaScript for self bot, But still I kept the python code..., Please make sure you have the latest version of `youtube_dl` installed.
+Please make sure you have `youtube_dl` and `chromedriver` installed.
 
 ### [Video Sample](https://www.youtube.com/watch?v=HA18QDE5GhQ)
 ![ScreenShot](https://raw.githubusercontent.com/MainSilent/DiscordStream/master/demo.png)
 
 ### Setup
-Create a discord user find the token and put it in .env `token`
+Create a discord user find the token and set it in .env `token`
 
-Get your user id and put it in .env `owner_id` (Only the `owner_id` can use the bot)
+If you don't set `owner_id` anyone can use the bot or else only you and the people you add can control it
 
 Join the selfbot user to your guild and type `*help`, If it respond your bot is working.
 
@@ -21,9 +21,11 @@ npm i
 npm start
 ```
 
-### Note
-type `*play` when selfbot has joined the voice channel
-
+### Note (`owner_id`)
 if you want other users use the bot, use `*add 'User_ID'`, `*remove 'User_ID'`
-
 you can also use `*list` to see added users
+
+### Donate
+BTC `1JBKewHbLMcECaWg23o1TXpvpzUyDJmFGE`
+ETH `0x16DDc096be7f1fAa8c3aA6cef73ddf7CF350e4f6`
+XMR `45g4vwaT6DQYLFXKZBay2XFqTj2Wit3AM2gn3RLLJzKi9TX1wMuoaXfQgtHGebCJXS3vRxXYU7Y8LUNc3JwsYWkRUbVsqYg`
