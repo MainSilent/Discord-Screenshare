@@ -120,6 +120,7 @@ client.on('message', msg => {
                 else {
                     stream.download_process.kill()
                     stream.stop()
+                    stream.killed = true
                     stream.in_progress = false
                     msg.react(accept)
                 }

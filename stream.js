@@ -94,9 +94,14 @@ class Video {
                         })
                 })
                 .on("close", () => {
-                    exec(`mv ${path}/* ${path}/${fileName}`, _ => {
-                        resolve(fileName)
-                    })
+                    if (this.killed) {
+                        msg.edit(":no_entry_sign: Downloading process killed")
+                        this.killed = false
+                    }
+                    else
+                        exec(`mv ${path}/* ${path}/${fileName}`, _ => {
+                            resolve(fileName)
+                        })
                 }).youtubeDlProcess
             })
         })
