@@ -28,7 +28,7 @@ client.on('message', msg => {
         content = msg.content.split(" ")
         command = content[0].split(prefix)[1]
 
-        if (!users.includes(msg.author.id) && msg.author.id != process.env.owner_id) return
+        if (process.env.owner_id && !users.includes(msg.author.id) && msg.author.id != process.env.owner_id) return
 
         switch (command) {
             case 'p':
