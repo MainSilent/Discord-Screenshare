@@ -1,4 +1,4 @@
-## Discord ScreanShare Bot
+## Discord ScreenShare Bot
 
 It's headless and there is no need for GUI.
 
