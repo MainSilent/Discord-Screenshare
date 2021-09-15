@@ -118,7 +118,7 @@ client.on('message', msg => {
                 if (notAllowed(msg)) 
                     msg.react(reject)
                 else {
-                    stream.download_process.kill()
+                    stream.download_process && stream.download_process.kill()
                     stream.stop()
                     stream.killed = true
                     stream.in_loading = false
