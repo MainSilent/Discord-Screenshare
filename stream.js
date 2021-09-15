@@ -102,12 +102,6 @@ class Video {
         })
     }
 
-    set_subtitle(url) {
-        this.driver.executeScript(`
-            video.innerHTML = '<track src="${url}"/>'
-        `)
-    }
-
     play() {
         console.log("Play")
         this.start()
