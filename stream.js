@@ -104,7 +104,6 @@ class Video {
 
     play() {
         console.log("Play")
-        this.start()
         this.driver.executeScript('video.play()')
     }
 
@@ -209,6 +208,7 @@ class Stream extends Video {
                     //         }
                     //     })
 
+                    this.start()
                     clearInterval(intJoin)
                 })
                 .catch(() => this.scroll())
