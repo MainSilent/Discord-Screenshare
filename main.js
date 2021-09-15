@@ -1,8 +1,7 @@
 require('dotenv').config()
 const { Stream } = require('./stream')
 const Discord = require('discord.js')
-const { existsSync, writeFile } = require('fs')
-const { execSync } = require("child_process")
+const { writeFile } = require('fs')
 let users = require('./users.json')
 
 let intLoop = null
@@ -22,16 +21,6 @@ const notAllowed = msg => {
 
 client.on('ready', () => {
     console.log("Bot started")
-
-    try {
-        if (existsSync('lastChannel')) {
-            const lastChannel = execSync('cat lastChannel').toString()
-            if (lastChannel) {
-                client.channels.get(lastChannel).send("[>] BOT STARTED")
-                execSync('rm lastChannel')
-            }
-        }
-    } catch (e){}
 })
 
 client.on('message', msg => {
@@ -68,24 +57,13 @@ client.on('message', msg => {
                     msg.channel.send("Please wait...")
                         .then(msg => {
                             // not safe...
-                            if (url.includes('youtube.com') || url.includes('youtu.be') || url.includes('xnxx.com') || url.includes('xvideos.com') || url.includes('xhamster.com'))
+                            if (url.includes('youtube.com') || url.includes('youtu.be'))
                                 stream.load(url, true, msg)
                             else
                                 stream.load(url, false, msg)
                         }) :
                     msg.reply("Another video loading is already in progress, Try again later.")
                 break;
-            // case 'sub':
-            //     url = content[content.length - 1]
-            //     if(!url || !url.match(url_regex)) {
-            //         msg.react(reject)
-            //         return
-            //     }
-
-            //     notAllowed(msg) ?
-            //         msg.react(reject) :
-            //         stream.set_subtitle(url)
-            //     break; 
             case 'play':
                 notAllowed(msg) ?
                     msg.react(reject) :
@@ -142,28 +120,20 @@ client.on('message', msg => {
                     stream.in_progress = false
                 }
                 break;
-            case 'init6':
-                stream.stop()
-                msg.channel.send('Rebooting...').then(() => {
-                    execSync(`echo -n ${msg.channel.id} > lastChannel`)
-                    execSync('init 6')
-                })
-                break;
             case 'help':
                 msg.channel.send({
                     embed: {
                         color: 0x03b2f8,
                         title: 'Commands',
                         description: `
-                            *p \`url\` | Youtube, xnxx, xvideos, xhamster | direct link (without downloading)\n
+                            *p \`url\` | Youtube | direct link (without downloading)\n
                             *play | Play video\n
                             *pause | Pause video\n
                             *duration | Show video duration\n
                             *seek | Show current video time\n
                             *seek \`sec, +sec, -sec\` | Change video time\n
                             *loop | Toggle playing video on loop\n
-                            *stop | Stop streaming\n
-                            *init6 | Reboot the server
+                            *stop | Stop streaming
                         `
                     }
                 })
