@@ -27,6 +27,15 @@ class Video {
                         var int1 = setInterval(() => {
                             is_error && clearInterval(int1)
 
+                            if (this.killed) {
+                                msg.edit(":no_entry_sign: Loading stopped")
+                                this.in_loading = false
+                                this.killed = false
+                                clearInterval(int1)
+                                clearInterval(int2)
+                                clearInterval(int3)
+                            }
+
                             this.driver.getCurrentUrl()
                                 .then(url => {
                                     if (!this.init && url === "file:///channels/@me") {
