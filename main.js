@@ -120,9 +120,9 @@ client.on('message', msg => {
                 else {
                     stream.download_process && stream.download_process.kill()
                     stream.stop()
+                    if (stream.in_loading || stream.in_progress) stream.killed = true
                     stream.in_loading = false
                     stream.in_progress = false
-                    if (!stream.in_loading || !stream.in_progress) stream.killed = true
                     msg.react(accept)
                 }
                 break;
