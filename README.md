@@ -1,6 +1,6 @@
 ## Discord ScreenShare Bot
 
-🔴 This is the main repository, I made it private by accident, This is why this repo has less star and fork compared to other identical repositories.
+🔴 This is the main repository and it is visible in commits, I made it private by accident, This is why this repo has less star and fork compared to other identical repositories.
 
 It's headless and there is no need for GUI.
 
