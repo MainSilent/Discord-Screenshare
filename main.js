@@ -15,6 +15,17 @@ let stream = new Stream(token)
 const url_expression = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
 const url_regex = new RegExp(url_expression)
 
+const helpMessage = `Help\n
+    *p \`url\` | Youtube | direct link (without downloading)\n
+    *play | Play video\n
+    *pause | Pause video\n
+    *duration | Show video duration\n
+    *seek | Show current video time\n
+    *seek \`sec, +sec, -sec\` | Change video time\n
+    *loop | Toggle playing video on loop\n
+    *stop | Stop streaming
+`
+
 const notAllowed = msg => {
     return stream.owner !== msg.author.id &&
            stream.owner !== process.env.owner_id &&
@@ -127,22 +138,7 @@ client.on('message', msg => {
                 }
                 break;
             case 'help':
-                msg.channel.send({
-                    embed: {
-                        color: 0x03b2f8,
-                        title: 'Commands',
-                        description: `
-                            *p \`url\` | Youtube | direct link (without downloading)\n
-                            *play | Play video\n
-                            *pause | Pause video\n
-                            *duration | Show video duration\n
-                            *seek | Show current video time\n
-                            *seek \`sec, +sec, -sec\` | Change video time\n
-                            *loop | Toggle playing video on loop\n
-                            *stop | Stop streaming
-                        `
-                    }
-                })
+                msg.channel.send(helpMessage)
                 break;
             case 'add':
                 id = content[content.length - 1]
@@ -178,27 +174,14 @@ client.on('message', msg => {
                 })
                 break;
             case 'list':
-                msg.channel.send({
-                    embed: {
-                        title: 'Users',
-                        description: users.join('\n\n')
-                    }
-                })
+                msg.channel.send(users.length !== 0 ? users.join('\n\n') : 'No user available')
                 break;
             default:
                 msg.reply("Unknown command, type `*help` for list of commands")
         }
 
         process.env.log_channel_id &&
-            client.channels.get(process.env.log_channel_id).send({
-                embed: {
-                    title: 'Log',
-                    description: msg.content,
-                    footer: {
-                        text: `${msg.author.username} | ${msg.author.id}` 
-                    }
-                }
-            })
+            client.channels.get(process.env.log_channel_id).send(`Command: ${msg.content}\nSender: ${msg.author.username} | ${msg.author.id}`)
     }
 })
 
