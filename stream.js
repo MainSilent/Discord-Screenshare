@@ -1,8 +1,6 @@
-const { exec } = require("child_process")
 const webdriver = require('selenium-webdriver')
 const chrome = require('selenium-webdriver/chrome')
-const YoutubeDlWrap = require("youtube-dl-wrap")
-const youtubeDlWrap = new YoutubeDlWrap()
+const ytdl = require('ytdl-core')
 
 class Video {
     async load(url, youtube_dl, msg) {
@@ -11,11 +9,11 @@ class Video {
         this.driver.executeScript('video.innerHTML = null')
 
         if (youtube_dl) {
-            await msg.edit("Downloading...")
+            await msg.edit("Fetching video formats...")
                 .then(async msg => {
-                    console.log("Downloading...")
-                    const fileName = await this.download(url, msg)
-                    url = __dirname + "/client/tmp/" + fileName
+                    console.log("Fetching video formats...")
+                    let info = await ytdl.getInfo(url)
+                    url = info.formats[0].url
                 })
         }
 
@@ -85,35 +83,6 @@ class Video {
                         clearInterval(int3)
                 })
         }, 10)
-    }
-
-    download(url, msg) {
-        return new Promise((resolve, reject) => {
-            const fileName = Date.now()
-            const path = "./client/tmp"
-            exec(`rm -rf ${path}/*`, _ => {
-                this.download_process = youtubeDlWrap.exec([url, "-o", `${path}/video`])
-                    .on("progress", progress => {
-                        //console.log(progress.percent)
-                    })
-                    .on("error", err => {
-                        msg.edit(":no_entry_sign: " + err.message)
-                            .then(_ => {
-                                this.in_loading = false
-                            })
-                    })
-                    .on("close", () => {
-                        if (this.killed) {
-                            msg.edit(":no_entry_sign: Downloading process killed")
-                            this.killed = false
-                        }
-                        else
-                            exec(`mv ${path}/* ${path}/${fileName}`, _ => {
-                                resolve(fileName)
-                            })
-                    }).youtubeDlProcess
-            })
-        })
     }
 
     play() {
