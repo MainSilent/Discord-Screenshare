@@ -13,7 +13,11 @@ class Video {
                 .then(async msg => {
                     console.log("Fetching video formats...")
                     let info = await ytdl.getInfo(url)
-                    url = info.formats[0].url
+                    let formats = info.formats.filter(f => f.hasVideo && f.hasAudio)
+                    formats = formats.filter(f => f.height <= 720 && f.fps <= 30)
+                    formats = formats.sort((a, b) => b.height - a.height)
+
+                    url = formats[0].url
                 })
         }
 
