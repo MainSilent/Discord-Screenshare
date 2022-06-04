@@ -10,7 +10,7 @@ class Video {
         this.in_loading = true
         this.driver.executeScript('video.innerHTML = null')
 
-		if (youtube_dl) {
+        if (youtube_dl) {
             await msg.edit("Downloading...")
                 .then(async msg => {
                     console.log("Downloading...")
@@ -19,7 +19,7 @@ class Video {
                 })
         }
 
-		await this.driver.executeScript(`video.src='${url}'`)
+        await this.driver.executeScript(`video.src='${url}'`)
             .then(_ => {
                 console.log('Loading...')
                 msg.edit("Loading...")
@@ -43,15 +43,15 @@ class Video {
                                         this.open_guild()
                                         this.join(msg)
                                         clearInterval(int1)
-                                    } 
-                                    else if(this.init)
+                                    }
+                                    else if (this.init)
                                         clearInterval(int1)
                                 })
                         }, 10)
                     })
             })
-		
-		// Wait until video load
+
+        // Wait until video load
         let is_load
         var int2 = setInterval(() => {
             this.driver.executeScript("return video.duration")
@@ -93,25 +93,25 @@ class Video {
             const path = "./client/tmp"
             exec(`rm -rf ${path}/*`, _ => {
                 this.download_process = youtubeDlWrap.exec([url, "-o", `${path}/video`])
-                .on("progress", progress => {
-                    //console.log(progress.percent)
-                })
-                .on("error", err => {
-                    msg.edit(":no_entry_sign: " + err.message)
-                        .then(_ => {
-                            this.in_loading = false
-                        })
-                })
-                .on("close", () => {
-                    if (this.killed) {
-                        msg.edit(":no_entry_sign: Downloading process killed")
-                        this.killed = false
-                    }
-                    else
-                        exec(`mv ${path}/* ${path}/${fileName}`, _ => {
-                            resolve(fileName)
-                        })
-                }).youtubeDlProcess
+                    .on("progress", progress => {
+                        //console.log(progress.percent)
+                    })
+                    .on("error", err => {
+                        msg.edit(":no_entry_sign: " + err.message)
+                            .then(_ => {
+                                this.in_loading = false
+                            })
+                    })
+                    .on("close", () => {
+                        if (this.killed) {
+                            msg.edit(":no_entry_sign: Downloading process killed")
+                            this.killed = false
+                        }
+                        else
+                            exec(`mv ${path}/* ${path}/${fileName}`, _ => {
+                                resolve(fileName)
+                            })
+                    }).youtubeDlProcess
             })
         })
     }
@@ -127,7 +127,7 @@ class Video {
         this.driver.executeScript('video.pause()')
     }
 
-    current(time=null) {
+    current(time = null) {
         if (time) {
             if (time[0] === '+' || time[0] === '-') {
                 this.current().then(c => {
@@ -135,11 +135,11 @@ class Video {
 
                     let r
                     c = parseFloat(c)
-                    const s = parseInt(time.slice(1)) 
+                    const s = parseInt(time.slice(1))
 
                     time[0] === '+' ?
-                    r = c + s :
-                    r = c - s
+                        r = c + s :
+                        r = c - s
 
                     this.driver.executeScript(`video.currentTime = ${r}`)
                 })
@@ -161,7 +161,7 @@ class Video {
 class Stream extends Video {
     client_url = `file://${__dirname}/client/index.html`
 
-    constructor(token, headless=true) {
+    constructor(token, headless = true) {
         super()
         const chrome_options = new chrome.Options()
         headless && chrome_options.addArguments('--headless')
@@ -214,7 +214,7 @@ class Stream extends Video {
                     //             return
                     //         }
                     //     })
-   
+
                     // this.is_full()
                     //     .then(result => {
                     //         if (result) {
@@ -226,7 +226,7 @@ class Stream extends Video {
                     setTimeout(() => {
                         this.start()
                     }, 1000)
-                    
+
                     clearInterval(intJoin)
                 })
                 .catch(() => this.scroll())
