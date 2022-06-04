@@ -36,7 +36,7 @@ client.on('ready', () => {
     console.log("Bot started")
 })
 
-client.on('message', msg => {
+client.on('messageCreate', msg => {
     if (msg.content.startsWith(prefix)) {
         content = msg.content.split(" ")
         command = content[0].split(prefix)[1]
@@ -50,7 +50,7 @@ client.on('message', msg => {
                     return
                 }
 
-                const voice_channel = msg.member.voiceChannel
+                const voice_channel = msg.member.voice.channel
                 if (!voice_channel) {
                     msg.reply("You need to be in a voice channel to use this command")
                     return
