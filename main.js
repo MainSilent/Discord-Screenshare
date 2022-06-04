@@ -1,6 +1,6 @@
 require('dotenv').config()
 const { Stream } = require('./stream')
-const Discord = require('discord.js')
+const Discord = require('discord.js-selfbot-v13')
 const { writeFile } = require('fs')
 let users = require('./users.json')
 
@@ -28,8 +28,8 @@ const helpMessage = `Help\n
 
 const notAllowed = msg => {
     return stream.owner !== msg.author.id &&
-           stream.owner !== process.env.owner_id &&
-           !msg.member.hasPermission('ADMINISTRATOR')
+        stream.owner !== process.env.owner_id &&
+        !msg.member.hasPermission('ADMINISTRATOR')
 }
 
 client.on('ready', () => {
@@ -61,12 +61,12 @@ client.on('message', msg => {
                 stream.guild_id = msg.guild.id
                 stream.channel_id = voice_channel.id
                 url = content[content.length - 1]
-                if(!url || !url.match(url_regex)) {
+                if (!url || !url.match(url_regex)) {
                     msg.react(reject)
                     return
                 }
 
-                !stream.in_loading ? 
+                !stream.in_loading ?
                     msg.channel.send("Please wait...")
                         .then(msg => {
                             // not safe...
@@ -102,7 +102,7 @@ client.on('message', msg => {
                         if (result)
                             msg.channel.send(stream.hms(result))
                         else
-                            msg.reply("N/A, try again later")     
+                            msg.reply("N/A, try again later")
                     })
                 break;
             case 'loop':
@@ -126,7 +126,7 @@ client.on('message', msg => {
                 }
                 break;
             case 'stop':
-                if (notAllowed(msg)) 
+                if (notAllowed(msg))
                     msg.react(reject)
                 else {
                     stream.download_process && stream.download_process.kill()
