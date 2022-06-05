@@ -29,7 +29,7 @@ const helpMessage = `Help\n
 const notAllowed = msg => {
     return stream.owner !== msg.author.id &&
         stream.owner !== process.env.owner_id &&
-        !msg.member.hasPermission('ADMINISTRATOR')
+        !msg.member.permissions.has('ADMINISTRATOR')
 }
 
 client.on('ready', () => {
