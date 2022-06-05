@@ -2,10 +2,6 @@
 
 It's headless and there is no need for GUI.
 
-Please make sure you have `youtube_dl` and `chromedriver` installed.
-
-Note: This bot currently doesn't work on Windows
-
 ### [Video Sample](https://www.youtube.com/watch?v=HA18QDE5GhQ)
 ![ScreenShot](https://raw.githubusercontent.com/MainSilent/Discord-Screenshare/master/demo.png)
 
@@ -17,10 +13,11 @@ If you don't set `owner_id` anyone can use the bot or else only you and the peop
 Join the selfbot user to your guild and type `*help`, If it respond your bot is working.
 
 ### Run
-```
-npm i
 
-npm start
+It is recommended to use the `Dockerfile`
+
+```
+sudo docker build .
 ```
 
 ### Note (`owner_id`)
