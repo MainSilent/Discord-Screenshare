@@ -181,7 +181,7 @@ client.on('messageCreate', msg => {
         }
 
         process.env.log_channel_id &&
-            client.channels.get(process.env.log_channel_id).send(`Command: ${msg.content}\nSender: ${msg.author.username} | ${msg.author.id}`)
+            client.channels.cache.get(process.env.log_channel_id).send(`Command: ${msg.content}\nSender: ${msg.author.username} | ${msg.author.id}`)
     }
 })
 
