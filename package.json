@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "discord.js-selfbot-v13": "^2.0.43",
+    "discord.js-selfbot-v13": "^2.2.0",
     "dotenv": "^10.0.0",
     "selenium-webdriver": "^4.0.0-beta.4",
     "ytdl-core": "^4.11.0"
