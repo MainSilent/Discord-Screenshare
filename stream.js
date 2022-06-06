@@ -12,12 +12,17 @@ class Video {
             await msg.edit("Fetching video formats...")
                 .then(async msg => {
                     console.log("Fetching video formats...")
-                    let info = await ytdl.getInfo(url)
-                    let formats = info.formats.filter(f => f.hasVideo && f.hasAudio)
-                    formats = formats.filter(f => f.height <= 720 && f.fps <= 30)
-                    formats = formats.sort((a, b) => b.height - a.height)
+                    try {
+                        let info = await ytdl.getInfo(url)
+                        let formats = info.formats.filter(f => f.hasVideo && f.hasAudio)
+                        formats = formats.filter(f => f.height <= 720 && f.fps <= 30)
+                        formats = formats.sort((a, b) => b.height - a.height)
 
-                    url = formats[0].url
+                        url = formats[0].url
+                    }
+                    catch (e) {
+                        msg.edit(":no_entry_sign: " + String(e))
+                    }
                 })
         }
 
