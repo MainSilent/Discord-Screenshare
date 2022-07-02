@@ -145,6 +145,8 @@ class Stream extends Video {
         headless && chrome_options.addArguments('--headless')
         chrome_options.addArguments('--no-sandbox')
         chrome_options.addArguments('--window-size=1920,1080')
+        chrome_options.addArguments("--disable-gpu")
+        chrome_options.addArguments("--disable-features=NetworkService")
         chrome_options.addArguments('--disable-web-security')
         chrome_options.addArguments('--disable-dev-shm-usage')
         chrome_options.addArguments('--autoplay-policy=no-user-gesture-required')
