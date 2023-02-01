@@ -1,4 +1,4 @@
-######forked from MainSilent/Discord-Screenshare
+###### forked from MainSilent/Discord-Screenshare
 
 🔴 Due to time issues and left discord a while ago, I am not interested in continuing this project.
 
